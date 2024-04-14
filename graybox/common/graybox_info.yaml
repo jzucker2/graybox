@@ -1,0 +1,22 @@
+text_sensor:
+  # https://esphome.io/components/text_sensor/template
+  - platform: template
+    id: graybox_version_string
+    name: "${friendly_name} GrayBox Version String"
+    lambda: |-
+      return {"0.1.0"};
+    icon: "mdi:update"
+    update_interval: 600s
+    entity_category: "diagnostic"
+
+sensor:
+  # https://esphome.io/components/sensor/template
+  - platform: template
+    id: graybox_version_number
+    name: "${friendly_name} GrayBox Version Number"
+    lambda: |-
+      return 0.1;
+    icon: "mdi:update"
+    state_class: measurement
+    update_interval: 600s
+    entity_category: "diagnostic"

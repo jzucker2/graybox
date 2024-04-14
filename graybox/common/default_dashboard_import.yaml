@@ -1,0 +1,8 @@
+# https://esphome.io/guides/creators.html
+# This should point to the public location of this yaml file.
+# Example: github://esphome/esphome-project-template/project-template-esp32.yaml@v6
+dashboard_import:
+  # FIXME: make dynamic with version and/or full path
+  # This should be tag or branch name most likely
+  package_import_url: "github://jzucker2/graybox/graybox/${box_config_file_name}.yaml@0.1.0"
+  import_full_config: false # or true
