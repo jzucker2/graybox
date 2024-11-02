@@ -1,6 +1,0 @@
-# https://esphome.io/components/i2c.html
-i2c:
-  - id: grove
-    sda: GPIO26
-    scl: GPIO32
-    scan: true

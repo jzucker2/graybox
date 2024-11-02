@@ -4,38 +4,9 @@ text_sensor:
     # example => `2024.3.2 Apr 12 2024, 16:46:11`
     name: "ESPHome Version Detailed"
     id: esphome_version_text_detailed
+
   - platform: version
     # example => `2024.3.2`
     name: "ESPHome Version"
     id: esphome_version_text_short
     hide_timestamp: true
-  - platform: copy
-    source_id: esphome_version_text_short
-    id: esphome_version_text_sanitized
-    # example => `20240302`
-    name: "ESPHome Version Sanitized"
-    entity_category: "diagnostic"
-    filters:
-      - substitute:
-          - ". -> 0"
-    # https://esphome.io/cookbook/lambda_magic.html#update-numeric-values-from-text-input
-    on_value:
-      then:
-        - lambda: |-
-            ESP_LOGD("esphome_version", "starting with x: %s", x.c_str());
-            // There's a loss of precision on int->float conversion
-            //auto converted = parse_number<float>(x);
-            auto int_converted = parse_number<int>(x);
-            //ESP_LOGD("esphome_version", "got final converted: %f", converted.value());
-            ESP_LOGD("esphome_version", "got final int_converted: %d", int_converted.value());
-            float final_float = static_cast<float>(int_converted.value_or(0));
-            ESP_LOGD("esphome_version", "got final_float: %f", final_float);
-            // now publish the new number
-            id(esphome_version_number).publish_state(final_float);
-
-sensor:
-  - platform: template
-    id: esphome_version_number
-    name: "ESPHome Version Number"
-    state_class: "measurement"
-    entity_category: "diagnostic"

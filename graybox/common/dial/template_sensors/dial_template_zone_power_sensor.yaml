@@ -1,3 +1,0 @@
-- platform: template
-  name: "${friendly_name} Zone State Sensor"
-  id: media_zone_state

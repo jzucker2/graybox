@@ -1,3 +1,0 @@
-- platform: template
-  name: "${friendly_name} AppleTV State Sensor"
-  id: appletv_media_state

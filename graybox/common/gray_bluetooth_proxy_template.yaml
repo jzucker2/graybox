@@ -1,0 +1,24 @@
+# https://esphome.io/components/bluetooth_proxy.html
+packages:
+  esphome: !include default_esphome.yaml
+  # Can't use logging with gray arduino right now
+  # logging: !include default_logger.yaml
+  # logging: !include debug_logger.yaml
+  wifi: !include wifi.yaml
+  esp32: !include m5atom_device.yaml
+  # light: !include {file: atom_light.yaml, vars: {light_pin: 27}}
+  # reset_button: !include reset_button.yaml
+  networking: !include networking.yaml
+  http: !include http.yaml
+  bluetooth_proxy: !include bluetooth_proxy.yaml
+  version: !include version.yaml
+  wifi_info: !include wifi_info.yaml
+  uptime: !include uptime.yaml
+  wifi_signal_sensor: !include wifi_signal_sensor.yaml
+  status_sensor: !include status_sensor.yaml
+  internal_temp: !include internal_temp.yaml
+  # dashboard_import: !include default_dashboard_import.yaml
+  # Exclude button to stay under size limits)
+  # button: !include {file: default_atom_button.yaml, vars: {button_pin: 39}}
+  prometheus: !include prometheus.yaml
+  project_info: !include project_info.yaml

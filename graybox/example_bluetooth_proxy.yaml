@@ -1,0 +1,9 @@
+substitutions:
+  node_name: example-bluetooth-proxy
+  friendly_name: Example Bluetooth Proxy
+  area: Example
+  comment: "This is a decent iteration"
+  box_config_file_name: example_bluetooth_proxy
+
+packages:
+  bluetooth_proxy_template: !include common/gray_bluetooth_proxy_template.yaml

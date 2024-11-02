@@ -41,5 +41,3 @@ updates:
     allow:
       # allow updates for specific clients
       - dependency-name: "esphome"
-      - dependency-name: "Pillow"
-      - dependency-name: "CairoSVG"

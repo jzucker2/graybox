@@ -1,6 +1,0 @@
-# https://esphome.io/components/mcp230xx.html#mcp23017-label
-mcp23017:
-  - id: 'mcp23017_hub'
-    # default is 0x20 instead
-    address: 0x27
-    i2c_id: ${bus_name}
