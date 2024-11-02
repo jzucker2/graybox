@@ -1,12 +1,12 @@
 # https://esphome.io/components/sensor/wifi_signal.html
 sensor:
-  - platform: wifi_signal # Reports the WiFi signal strength/RSSI in dB
+  - platform: wifi_signal  # Reports the WiFi signal strength/RSSI in dB
     name: "${friendly_name} WiFi Signal dB"
     id: wifi_signal_db
     update_interval: 60s
     entity_category: "diagnostic"
 
-  - platform: copy # Reports the WiFi signal strength in %
+  - platform: copy  # Reports the WiFi signal strength in %
     source_id: wifi_signal_db
     name: "${friendly_name} WiFi Signal Percent"
     filters:

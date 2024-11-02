@@ -1,0 +1,12 @@
+# https://esphome.io/components/external_components
+# https://github.com/esphome/esphome/pull/7683
+external_components:
+  - source: github://esphome/esphome@dev
+    components: [prometheus]
+    # If 0s then it always refreshes
+    refresh: 0s
+
+# https://esphome.io/components/prometheus.html
+# Activates prometheus /metrics endpoint
+prometheus:
+  include_internal: true

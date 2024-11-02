@@ -1,0 +1,21 @@
+# https://esphome.io/components/external_components
+# https://github.com/esphome/esphome/pull/7707
+external_components:
+  - source: github://pr#7707
+    components: [project_version, project_name]
+    # If 0s then it always refreshes
+    refresh: 0s
+
+text_sensor:
+  - platform: project_version
+    name: "ESPHome Project Version"
+    id: esphome_project_version_text_short
+    hide_timestamp: true
+
+  - platform: project_version
+    name: "ESPHome Project Version Detailed"
+    id: esphome_project_version_text_detailed
+
+  - platform: project_name
+    name: "ESPHome Project Name"
+    id: esphome_project_name
