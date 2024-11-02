@@ -69,7 +69,7 @@ jobs:
       release-url: ${{ github.event_name == 'published' && github.event.release.html_url || '' }}
       release-version: ${{ github.event_name == 'published' && github.event.release.tag_name || '' }}
       # My nonsense below
-      secrets-environment: albion
+      secrets-environment: graybox
       # secrets-yaml-file: ${{ secrets.ESPHOME_SECRETS_YAML }}
       secrets-yaml-file-path: graybox/secrets.yaml
 
