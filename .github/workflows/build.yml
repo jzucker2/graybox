@@ -71,7 +71,7 @@ jobs:
       # My nonsense below
       secrets-environment: albion
       # secrets-yaml-file: ${{ secrets.ESPHOME_SECRETS_YAML }}
-      secrets-yaml-file-path: albionboxes/secrets.yaml
+      secrets-yaml-file-path: graybox/secrets.yaml
 
   comment:
     if: github.event_name == 'pull_request'
