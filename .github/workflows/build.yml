@@ -55,7 +55,7 @@ jobs:
   # https://github.com/esphome/workflows/tree/main
   build-firmware:
     name: Build Firmware
-    uses: jzucker2/workflows/.github/workflows/build.yml@0.1.0-alpha
+    uses: jzucker2/workflows/.github/workflows/build.yml@0.6.5-alpha
     needs:
       - choose-files
     secrets: inherit
