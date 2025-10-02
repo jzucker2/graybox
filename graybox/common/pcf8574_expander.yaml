@@ -1,0 +1,8 @@
+# https://esphome.io/components/pcf8574.html
+# PR to use a cache https://github.com/esphome/esphome/pull/10573
+pcf8574:
+  - id: 'pcf8574_hub'
+    # default is 0x21
+    pcf8575: false
+    address: 0x20
+    i2c_id: ${bus_name}

@@ -1,0 +1,58 @@
+# https://github.com/patrickcollins12/esphome-fan-controller
+sensor:
+  ########################################################
+  # START THE FAN CONTROLLER SETUP
+
+  # Every time the fan speed is updated, this sensor will
+  # also be updated for displaying on the frontend.
+  # See proxy_output.
+  - platform: template
+    name: "Fan Speed (PWM Voltage)"
+    unit_of_measurement: "%"
+    id: fan_speed_pwm_voltage
+
+output:
+  # https://esphome.io/components/output/ledc.html
+  # Wire this pin (13) into the PWM pin of your 12v fan
+  # ledc is the name of the pwm output system on an esp32
+  - platform: ledc
+    id: console_fan_speed
+    pin: "${pwm_pin}"
+
+    # 25KHz is standard PC fan frequency, minimises buzzing
+    frequency: "25000 Hz"
+
+    # my fans stop working below 13% powerful.
+    # also they're  powerful and loud, cap their max speed to 80%
+    min_power: 5%
+    max_power: 95%
+
+    # At 0, actually turn it off, otherwise the power keeps going.
+    zero_means_zero: true
+
+  # This proxy output takes its input
+  # if the manual fan control is on, use the level from that
+  # otherwise use the PID control value.
+  # Then publish the result to the fan (ledc) and
+  # also publish to the template output sensor
+  - platform: template
+    id: proxy_output
+    type: float
+    write_action:
+      lambda: |-
+        float write_val =
+          (id(manual_fan_control).state) ?
+            id(manual_fan_control).speed / 100.0 : state*1.0;
+        id(console_fan_speed).set_level(write_val);
+        id(fan_speed_pwm_voltage).publish_state(write_val*100.0);
+
+# If you turn this on, you can manually set the fan speed.
+# The PID will be ignored. This is done via the proxy_output.
+# https://esphome.io/components/fan/
+fan:
+  # https://esphome.io/components/fan/speed.html
+  - platform: speed
+    id: manual_fan_control
+    output: proxy_output
+    name: "Manual Fan Speed"
+    restore_mode: RESTORE_DEFAULT_OFF

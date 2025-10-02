@@ -1,0 +1,24 @@
+# https://github.com/esphome/esphome/pull/8737
+packages:
+  esphome: !include ../core/simple_esphome.yaml
+  esp32: !include ../boards/m5echo_idf_device.yaml
+  echo_base: !include ../echo/echo_base.yaml
+
+# https://esphome.io/components/binary_sensor/gpio.html
+# https://esphome.io/components/packages.html#extend
+binary_sensor:
+  # button does the following:
+  # short click - stop a timer
+  # if no timer then restart either microwakeword or voice assistant continuous
+  - id: !extend echo_button
+    on_release:
+      then:
+        - logger.log: Pressed echo main button
+
+sensor:
+  - platform: sound_level
+    passive: false
+    rms:
+      name: "RMS Sound Level"
+    peak:
+      name: "Peak Sound Level"

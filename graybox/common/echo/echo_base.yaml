@@ -1,0 +1,11 @@
+# https://github.com/esphome/wake-word-voice-assistants/blob/main/m5stack-atom-echo/m5stack-atom-echo.yaml
+# https://github.com/esphome/wake-word-voice-assistants/pull/99
+packages:
+  wifi_base: !include ../templates/wifi_base.yaml
+  factory_reset: !include ../factory_reset.yaml
+  base_goober: !include ../templates/base_goober.yaml
+  i2s_audio: !include ../echo/i2s_audio.yaml
+  mic: !include ../echo/mic.yaml
+  speaker: !include ../echo/speaker.yaml
+  light: !include ../echo/light.yaml
+  button: !include ../echo/button.yaml

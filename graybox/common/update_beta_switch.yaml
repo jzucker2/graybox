@@ -1,0 +1,39 @@
+substitutions:
+  ota_url: !secret ota_url
+
+button:
+  # https://esphome.io/components/button/template.html
+  # https://esphome.io/components/button/#config-button
+  - platform: template
+    name: "Update Beta Button"
+    id: update_beta_button
+    icon: "mdi:cellphone-arrow-down"
+    disabled_by_default: true
+    entity_category: "config"
+    device_class: "update"
+    on_press:
+      - logger.log: Update Beta Button Pressed
+      # https://esphome.io/components/ota/http_request
+      - ota.http_request.flash:
+          md5_url: "${ota_url}/esphome/beta/ota/md5/${node_name}"
+          url: "${ota_url}/esphome/beta/ota/binary/${node_name}"
+      - logger.log: "This message should be not displayed because the device reboots"
+
+# https://github.com/esphome/home-assistant-voice-pe/blob/7416427fb966d00b8926ec87c8d0983c770611d9/home-assistant-voice.factory.yaml#L56-L70
+switch:
+  - platform: template
+    id: beta_firmware
+    name: Beta firmware
+    icon: "mdi:test-tube"
+    disabled_by_default: true
+    entity_category: "config"
+    optimistic: true
+    restore_mode: RESTORE_DEFAULT_OFF
+    on_turn_on:
+      - logger.log: "OTA updates set to use Beta firmware"
+      - lambda: id(update_http_request).set_source_url("${ota_url}/esphome/beta/ota/manifest/${node_name}");
+      - component.update: update_http_request
+    on_turn_off:
+      - logger.log: "OTA updates set to use Production firmware"
+      - lambda: id(update_http_request).set_source_url("${ota_url}/esphome/ota/manifest/${node_name}");
+      - component.update: update_http_request

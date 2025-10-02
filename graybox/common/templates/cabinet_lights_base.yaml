@@ -1,0 +1,66 @@
+# Used for JZ Closet and Living Room Snack Cabinet at the moment.
+# This includes an ambient light sensor as well.
+packages:
+  base_goober: !include ../templates/base_goober.yaml
+  i2c: !include ../default_i2c.yaml
+
+sensor:
+  - <<: !include {file: ../ambient_light_sensor.yaml, vars: {light_sensor_update_interval: "${cabinet_light_sensor_update_interval}"}}
+
+# https://esphome.io/components/switch/index.html
+switch:
+  # https://esphome.io/components/switch/template
+  - platform: template
+    name: "Enable Atom Button Switch"
+    id: enable_atom_button_switch
+    optimistic: true
+    icon: "mdi:gesture-tap-button"
+    restore_mode: RESTORE_DEFAULT_ON
+  # https://esphome.io/components/switch/template
+  - platform: template
+    name: "Enable White Light Hotfix"
+    id: enable_white_light_hotfix_switch
+    optimistic: true
+    icon: "mdi:auto-fix"
+    restore_mode: RESTORE_DEFAULT_ON
+
+# https://esphome.io/components/button/index.html
+button:
+  - platform: template
+    name: "${friendly_name} White Lights On"
+    id: turn_on_white_lights_button
+    icon: "mdi:lightbulb-auto-outline"
+    on_press:
+      - logger.log: "${friendly_name} Virtual Button pressed"
+      - script.execute:
+          id: turn_on_good_white_lights
+  - platform: template
+    name: "${friendly_name} Turn Off Lights"
+    id: turn_off_lights_button
+    icon: "mdi:lightbulb-group-off"
+    on_press:
+      - logger.log: "${friendly_name} Virtual Button pressed"
+      - script.execute:
+          id: turn_off_lights
+  - platform: template
+    name: "${friendly_name} Color Lights On"
+    id: turn_on_color_lights_button
+    icon: "mdi:string-lights"
+    on_press:
+      - logger.log: "${friendly_name} Virtual Button pressed"
+      - script.execute:
+          id: turn_on_color_lights
+
+binary_sensor:
+  # built in button
+  - platform: gpio
+    pin:
+      number: "${atom_button_pin}"
+      inverted: true
+    name: "${friendly_name} Button"
+    on_release:
+      then:
+        - logger.log: "${friendly_name} Button tapped"
+        - script.execute:
+            id: toggle_lights
+        - logger.log: "Done with ${friendly_name} button tapped!"

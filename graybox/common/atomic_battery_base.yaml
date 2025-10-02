@@ -1,0 +1,33 @@
+# https://shop.m5stack.com/products/atomic-battery-base-200mah?variant=46183599014145
+# https://docs.m5stack.com/en/atom/Atomic%20Battery%20Base
+# https://esphome.io/components/sensor/adc.html
+sensor:
+  - platform: adc
+    name: "${friendly_name} Battery Voltage"
+    id: battery_voltage
+    pin: "${battery_adc_pin}"
+    accuracy_decimals: 2
+    update_interval: 60s
+    # https://docs.espressif.com/projects/esp-idf/en/v4.4.7/esp32/api-reference/peripherals/adc.html#_CPPv425adc1_config_channel_atten14adc1_channel_t11adc_atten_t
+    attenuation: 12dB
+    samples: 10
+    filters:
+      - multiply: 2.0  # The voltage divider requires us to multiply by 2
+
+# https://esphome.io/components/text_sensor/template.html
+text_sensor:
+  - platform: template
+    name: "${friendly_name} Battery Status"
+    id: battery_status
+    lambda: |-
+      float v = id(battery_voltage).state;
+      if (v >= 3.82) {
+        return {"Full"};
+      } else if (v >= 3.62) {
+        return {"High"};
+      } else if (v >= 3.48) {
+        return {"Medium"};
+      } else {
+        return {"Low"};
+      }
+    update_interval: 60s

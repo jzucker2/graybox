@@ -1,0 +1,9 @@
+# https://esphome.io/components/bluetooth_proxy.html
+packages:
+  esphome: !include ../core/simple_esphome.yaml
+  esp32: !include ../boards/m5atoms3lite_idf_device.yaml
+  light: !include {file: ../atom_idf_light.yaml, vars: {light_pin: 35}}
+  base_goober: !include ../templates/base_goober.yaml
+  bluetooth_proxy: !include bluetooth_proxy_idf.yaml
+  # broken since https://github.com/esphome/esphome/releases/tag/2025.8.0b1
+  # bluetooth_proxy_info: !include bluetooth_proxy_info.yaml

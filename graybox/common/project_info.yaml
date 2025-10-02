@@ -1,21 +1,28 @@
-# https://esphome.io/components/external_components
-# https://github.com/esphome/esphome/pull/7707
-external_components:
-  - source: github://pr#7707
-    components: [project_version, project_name]
-    # If 0s then it always refreshes
-    refresh: 0s
-
+# https://esphome.io/components/text_sensor/template.html
 text_sensor:
-  - platform: project_version
+  - platform: template
     name: "ESPHome Project Version"
     id: esphome_project_version_text_short
-    hide_timestamp: true
+    icon: "mdi:information-box"
+    entity_category: "diagnostic"
+    update_interval: 600s
+    lambda: |-
+      return { ESPHOME_PROJECT_VERSION };
 
-  - platform: project_version
+  - platform: template
     name: "ESPHome Project Version Detailed"
     id: esphome_project_version_text_detailed
+    icon: "mdi:information-box"
+    entity_category: "diagnostic"
+    update_interval: 600s
+    lambda: |-
+      return { ESPHOME_PROJECT_VERSION " " + App.get_compilation_time() };
 
-  - platform: project_name
+  - platform: template
     name: "ESPHome Project Name"
     id: esphome_project_name
+    icon: "mdi:information-box"
+    entity_category: "diagnostic"
+    update_interval: 600s
+    lambda: |-
+      return { ESPHOME_PROJECT_NAME };

@@ -1,3 +1,4 @@
+# https://esphome.io/components/esp32.html
 esp32:
   board: m5stack-atom
   framework:

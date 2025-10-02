@@ -1,0 +1,25 @@
+# Both broken in https://github.com/esphome/esphome/releases/tag/2025.8.0b1
+sensor:
+  # https://esphome.io/components/sensor/template.html
+  - platform: template
+    name: "Bluetooth Proxy Connections Limit"
+    id: bluetooth_proxy_connections_limit
+    icon: "mdi:bluetooth-settings"
+    update_interval: 30s
+    entity_category: "diagnostic"
+    lambda: |-
+      int limit = bluetooth_proxy::global_bluetooth_proxy->get_bluetooth_connections_limit();
+      ESP_LOGD("bluetooth_proxy_sensor", "Current connections limit => %d", limit);
+      return limit;
+
+  # https://esphome.io/components/sensor/template.html
+  - platform: template
+    name: "Bluetooth Proxy Connections Free"
+    id: bluetooth_proxy_connections_free
+    icon: "mdi:bluetooth-settings"
+    update_interval: 30s
+    entity_category: "diagnostic"
+    lambda: |-
+      int free = bluetooth_proxy::global_bluetooth_proxy->get_bluetooth_connections_free();
+      ESP_LOGD("bluetooth_proxy_sensor", "Current connections free => %d", free);
+      return free;

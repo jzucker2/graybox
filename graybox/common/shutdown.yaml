@@ -1,0 +1,6 @@
+# https://esphome.io/components/button/shutdown
+button:
+  - platform: shutdown
+    id: shutdown_btn
+    name: "${friendly_name} Shutdown"
+    disabled_by_default: true

@@ -1,0 +1,69 @@
+# https://esphome.io/components/text_sensor/template.html
+text_sensor:
+  - platform: template
+    name: "ESPHome Board"
+    id: esphome_board
+    icon: "mdi:information-box"
+    entity_category: "diagnostic"
+    update_interval: 600s
+    lambda: |-
+      return { ESPHOME_BOARD };
+
+  - platform: template
+    name: "ESPHome Board Variant"
+    id: esphome_board_variant
+    icon: "mdi:information-box"
+    entity_category: "diagnostic"
+    update_interval: 600s
+    lambda: |-
+      return { ESPHOME_VARIANT };
+
+  - platform: template
+    name: "ESPHome Framework Type"
+    id: esphome_framework_type
+    icon: "mdi:information-box"
+    entity_category: "diagnostic"
+    update_interval: 600s
+    lambda: |-
+      #ifdef USE_ARDUINO
+        return { "Arduino" };
+      #elif defined(USE_ESP_IDF)
+        return { "ESP-IDF" };
+      #else
+        return { "Unknown" };
+      #endif
+
+  - platform: template
+    name: "ESPHome Framework Version"
+    id: esphome_framework_version
+    icon: "mdi:information-box"
+    entity_category: "diagnostic"
+    update_interval: 600s
+    lambda: |-
+      #ifdef USE_ARDUINO
+        return { to_string(ARDUINO) };
+      #elif defined(USE_ESP_IDF)
+        // return {"ESP-IDF " + std::string(esp_get_idf_version())};
+        // return {"ESP-IDF " + to_string(ESP_IDF_VERSION_MAJOR) + to_string(ESP_IDF_VERSION_MINOR) + to_string(ESP_IDF_VERSION_PATCH)};
+        return { to_string(ESP_IDF_VERSION) };
+      #else
+        return { "Unknown Framework" };
+      #endif
+
+  - platform: template
+    name: "ESPHome PlatformIO Version"
+    id: esphome_platformio_version
+    icon: "mdi:information-box"
+    entity_category: "diagnostic"
+    update_interval: 600s
+    lambda: |-
+      return { to_string(PLATFORMIO) };
+
+  - platform: template
+    name: "ESPHome IDF Version"
+    id: esphome_idf_version
+    icon: "mdi:information-box"
+    entity_category: "diagnostic"
+    update_interval: 600s
+    lambda: |-
+      return { IDF_VER };

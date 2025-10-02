@@ -1,5 +1,6 @@
 # https://gist.github.com/tathamoddie/62afc41e5b4464f5adeef4b580fb3294
 # https://esphome.io/components/http_request.html
+# https://github.com/esphome/esphome/pull/7790
 http_request:
   useragent: "esphome/goober_${node_name}"
   timeout: 60s

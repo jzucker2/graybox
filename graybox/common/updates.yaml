@@ -1,0 +1,41 @@
+substitutions:
+  ota_url: !secret ota_url
+
+# https://esphome.io/components/ota/
+ota:
+  # https://esphome.io/components/ota/esphome.html
+  - platform: esphome
+    password: !secret ota_password
+
+  # https://esphome.io/components/ota/http_request
+  - platform: http_request
+    id: ota_http_request
+
+  # https://esphome.io/components/ota/web_server
+  - platform: web_server
+    id: ota_web_server
+
+update:
+  # https://esphome.io/components/update/http_request.html
+  - platform: http_request
+    name: Firmware Update
+    id: update_http_request
+    source: "${ota_url}/esphome/ota/manifest/${node_name}"
+    update_interval: 1h
+
+button:
+  # https://esphome.io/components/button/template.html
+  # https://esphome.io/components/button/#config-button
+  - platform: template
+    name: "Update Button"
+    id: update_button
+    icon: "mdi:cellphone-arrow-down"
+    entity_category: "config"
+    device_class: "update"
+    on_press:
+      - logger.log: Update Button Pressed
+      # https://esphome.io/components/ota/http_request
+      - ota.http_request.flash:
+          md5_url: "${ota_url}/esphome/ota/md5/${node_name}"
+          url: "${ota_url}/esphome/ota/binary/${node_name}"
+      - logger.log: "This message should be not displayed because the device reboots"

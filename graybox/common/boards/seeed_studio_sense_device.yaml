@@ -1,0 +1,10 @@
+# https://wiki.seeedstudio.com/XIAO_ESP32S3_esphome/
+# https://docs.platformio.org/en/latest/boards/espressif32/seeed_xiao_esp32s3.html
+# https://wiki.seeedstudio.com/XIAO_ESP32S3_esphome/#ov2640-camera-xiao-esp32s3-sense
+# https://esphome.io/components/esp32.html
+esp32:
+  board: seeed_xiao_esp32s3
+  variant: esp32s3
+  flash_size: 8MB
+  framework:
+    type: esp-idf

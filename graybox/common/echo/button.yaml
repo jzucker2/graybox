@@ -1,0 +1,13 @@
+# https://esphome.io/components/binary_sensor/gpio.html
+binary_sensor:
+  # button does the following:
+  # short click - stop a timer
+  # if no timer then restart either microwakeword or voice assistant continuous
+  - platform: gpio
+    pin:
+      number: GPIO39
+      inverted: true
+    name: Button
+    disabled_by_default: true
+    entity_category: diagnostic
+    id: echo_button

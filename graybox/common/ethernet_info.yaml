@@ -1,0 +1,13 @@
+# https://esphome.io/components/text_sensor/ethernet_info
+text_sensor:
+  - platform: ethernet_info
+    ip_address:
+      name: ESP IP Address
+      address_0:
+        name: ESP IP Address 0
+      address_1:
+        name: ESP IP Address 1
+    dns_address:
+      name: ESP DNS Address
+    mac_address:
+      name: ESP MAC Address

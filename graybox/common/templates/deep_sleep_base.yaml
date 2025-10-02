@@ -1,0 +1,83 @@
+# https://esphome.io/components/deep_sleep.html
+packages:
+  deep_sleep: !include ../deep_sleep.yaml
+
+# https://esphome.io/components/deep_sleep.html#esp32-wakeup-cause
+sensor:
+  # https://esphome.io/components/sensor/template.html
+  - platform: template
+    name: "Wakeup Cause Code"
+    id: wakeup_cause_code_sensor
+    icon: "mdi:bed-clock"
+    accuracy_decimals: 0
+    # https://docs.espressif.com/projects/esp-idf/en/stable/esp32/api-reference/system/sleep_modes.html#_CPPv418esp_sleep_source_t
+    lambda: |-
+      int wakeup_code = esp_sleep_get_wakeup_cause();
+      switch (wakeup_code) {
+        case 0:
+          id(wakeup_cause_reason_text_sensor).publish_state("ESP_SLEEP_WAKEUP_UNDEFINED");
+          break;
+        case 1:
+          id(wakeup_cause_reason_text_sensor).publish_state("ESP_SLEEP_WAKEUP_ALL");
+          break;
+        case 2:
+          id(wakeup_cause_reason_text_sensor).publish_state("ESP_SLEEP_WAKEUP_EXT0");
+          break;
+        case 3:
+          id(wakeup_cause_reason_text_sensor).publish_state("ESP_SLEEP_WAKEUP_EXT1");
+          break;
+        case 4:
+          id(wakeup_cause_reason_text_sensor).publish_state("ESP_SLEEP_WAKEUP_TIMER");
+          break;
+        case 5:
+          id(wakeup_cause_reason_text_sensor).publish_state("ESP_SLEEP_WAKEUP_TOUCHPAD");
+          break;
+        case 6:
+          id(wakeup_cause_reason_text_sensor).publish_state("ESP_SLEEP_WAKEUP_ULP");
+          break;
+        case 7:
+          id(wakeup_cause_reason_text_sensor).publish_state("ESP_SLEEP_WAKEUP_GPIO");
+          break;
+        case 8:
+          id(wakeup_cause_reason_text_sensor).publish_state("ESP_SLEEP_WAKEUP_UART");
+          break;
+        case 9:
+          id(wakeup_cause_reason_text_sensor).publish_state("ESP_SLEEP_WAKEUP_WIFI");
+          break;
+        case 10:
+          id(wakeup_cause_reason_text_sensor).publish_state("ESP_SLEEP_WAKEUP_COCPU");
+          break;
+        case 11:
+          id(wakeup_cause_reason_text_sensor).publish_state("ESP_SLEEP_WAKEUP_COCPU_TRAP_TRIG");
+          break;
+        case 12:
+          id(wakeup_cause_reason_text_sensor).publish_state("ESP_SLEEP_WAKEUP_BT");
+          break;
+        default:
+          id(wakeup_cause_reason_text_sensor).publish_state("ESP_SLEEP_WAKEUP_UNKNOWN");
+      }
+      return wakeup_code;
+
+# https://esphome.io/components/deep_sleep.html#esp32-wakeup-cause
+text_sensor:
+  # https://esphome.io/components/text_sensor/template.html
+  - platform: template
+    name: "Wakeup Cause Reason"
+    id: wakeup_cause_reason_text_sensor
+    icon: "mdi:chat-sleep"
+
+# https://esphome.io/components/switch/index.html
+switch:
+  # https://esphome.io/components/switch/template
+  - platform: template
+    name: "Enable Deep Sleep Switch"
+    id: enable_deep_sleep_switch
+    optimistic: true
+    icon: "mdi:sleep"
+    restore_mode: RESTORE_DEFAULT_OFF
+    turn_on_action:
+      - logger.log: "Allowing deep sleep"
+      - deep_sleep.allow: deep_sleep_goober
+    turn_off_action:
+      - logger.log: "Preventing deep sleep"
+      - deep_sleep.prevent: deep_sleep_goober

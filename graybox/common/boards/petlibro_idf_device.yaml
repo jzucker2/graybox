@@ -1,0 +1,8 @@
+# https://esphome.io/components/esp32.html
+# https://github.com/taylorfinnell/petlibro-esphome/blob/master/plwf105/plwf105.yaml
+# https://github.com/taylorfinnell/petlibro-esphome/blob/master/plaf108/plaf108.yaml
+esp32:
+  board: esp32-c3-devkitm-1
+  variant: ESP32C3
+  framework:
+    type: esp-idf

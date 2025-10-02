@@ -2,3 +2,10 @@
 sensor:
   - platform: uptime
     name: "${friendly_name} Uptime Sensor"
+    id: uptime_seconds
+    type: seconds
+
+  - platform: uptime
+    name: "${friendly_name} Uptime Timestamp"
+    id: uptime_timestamp
+    type: timestamp

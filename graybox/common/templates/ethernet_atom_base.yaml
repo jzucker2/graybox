@@ -1,0 +1,4 @@
+# https://esphome.io/components/ethernet.html
+packages:
+  ethernet: !include ../w5500_atom_ethernet.yaml
+  ethernet_info: !include ../ethernet_info.yaml

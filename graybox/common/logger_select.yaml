@@ -1,0 +1,5 @@
+# https://esphome.io/components/select/logger.html
+select:
+  - platform: logger
+    name: "Logger select"
+    id: logger_select

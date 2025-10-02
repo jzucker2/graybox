@@ -1,0 +1,7 @@
+# https://esphome.io/components/psram.html
+# https://esphome.io/components/debug.html
+sensor:
+  - platform: debug
+    psram:
+      name: "Free PSRAM"
+      id: free_psram
