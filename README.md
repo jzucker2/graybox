@@ -4,7 +4,8 @@ I want this public so I can use it in the ESPHome docker app.
 
 ## Secrets.yaml
 
-You should make your own `secrets.yaml` at `graybox/secrets.yaml` like the following:
+You should make your own `secrets.yaml` at `graybox/secrets.yaml` like the following 
+(and exclude from gitignore):
 
 ```yaml
 wifi_ssid: Example
