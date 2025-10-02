@@ -1,0 +1,13 @@
+# https://esphome.io/components/ethernet.html
+# https://github.com/spali/esphome-components/tree/master/components/ethernet_spi
+# this is for W5500
+# https://shop.m5stack.com/products/atomic-poe-base-w5500
+# https://github.com/esphome/esphome-docs/pull/4389
+# https://docs.m5stack.com/en/atom/Atomic%20PoE%20Base
+ethernet:
+  type: W5500
+  clk_pin: GPIO22
+  mosi_pin: GPIO33
+  miso_pin: GPIO23
+  cs_pin: GPIO19
+  clock_speed: 16Mhz  # works

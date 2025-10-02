@@ -1,0 +1,18 @@
+# https://esphome.io/components/external_components
+# https://github.com/esphome/esphome/pull/7688
+external_components:
+  - source: github://pr#7688
+    components: [loki]
+    # If 0s then it always refreshes
+    refresh: 0s
+
+# https://esphome.io/components/prometheus.html
+# Activates prometheus /metrics endpoint
+loki:
+  # url: "${loki_host}"
+  url: "http://10.0.1.133"
+
+switch:
+  - platform: loki
+    logs_enabled:
+      name: Loki Logs Enabled

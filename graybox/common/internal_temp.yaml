@@ -4,3 +4,4 @@
 sensor:
   - platform: internal_temperature
     name: "${friendly_name} ESPHome Internal Temperature"
+    id: esphome_internal_temperature_sensor

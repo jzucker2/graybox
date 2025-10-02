@@ -1,0 +1,5 @@
+# https://esphome.io/components/wifi.html
+packages:
+  wifi: !include ../wifi.yaml
+  wifi_info: !include ../wifi_info.yaml
+  wifi_signal_sensor: !include ../wifi_signal_sensor.yaml

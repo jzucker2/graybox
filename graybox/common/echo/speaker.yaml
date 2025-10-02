@@ -1,0 +1,10 @@
+# https://esphome.io/components/speaker/i2s_audio.html
+speaker:
+  - platform: i2s_audio
+    id: echo_speaker
+    i2s_dout_pin: GPIO22
+    dac_type: external
+    bits_per_sample: 16bit
+    sample_rate: 16000
+    channel: stereo  # The Echo has poor playback audio quality when using mono audio
+    buffer_duration: 60ms

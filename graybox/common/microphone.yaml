@@ -1,0 +1,8 @@
+# https://github.com/esphome/firmware/blob/main/voice-assistant/m5stack-atom-echo.yaml
+# https://esphome.io/components/microphone/
+microphone:
+  - platform: i2s_audio
+    id: echo_microphone
+    i2s_din_pin: GPIO23
+    adc_type: external
+    pdm: true

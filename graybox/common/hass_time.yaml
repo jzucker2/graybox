@@ -1,0 +1,5 @@
+# https://esphome.io/components/time/homeassistant
+time:
+  - platform: homeassistant
+    id: esptime
+    timezone: America/Los_Angeles

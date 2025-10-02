@@ -1,0 +1,5 @@
+# borrowed from BT proxy
+# https://esphome.io/components/switch/safe_mode
+button:
+  - platform: factory_reset
+    name: "${friendly_name} Factory Reset Button"

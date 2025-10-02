@@ -1,0 +1,210 @@
+# https://lilygo.cc/products/t-keyboard-s3-pro
+# https://github.com/Xinyuan-LilyGO/T-Keyboard-S3-Pro/tree/arduino-esp32-libs_V2.0.14
+# https://github.com/Xinyuan-LilyGO/T-Keyboard-S3-Pro/blob/arduino-esp32-libs_V2.0.14/libraries/Mylibrary/pin_config.h
+packages:
+  esp32: !include ../boards/t3keyboard_device.yaml
+  esphome: !include ../core/t3keyboard_esphome.yaml
+  wifi_base: !include ../templates/wifi_base.yaml
+  base_goober: !include ../templates/base_goober.yaml
+  psram: !include ../psram.yaml
+  psram_debug: !include ../psram_debug.yaml
+
+# https://esphome.io/components/i2c.html
+i2c:
+  scl: GPIO02
+  sda: GPIO42
+  scan: true
+
+# https://esphome.io/components/i2c_device
+i2c_device:
+  id: i2cdev
+  address: 0x01
+
+# https://esphome.io/components/spi.html
+spi:
+  clk_pin: GPIO41
+  mosi_pin: GPIO40
+  # miso_pin: -1
+  interface: hardware
+
+# https://esphome.io/components/spi.html#generic-spi-device-component
+spi_device:
+  id: spidev
+  # cs_pin: GPIOXX
+  # data_rate: 2MHz
+  # spi_mode: 3
+  # bit_order: lsb_first
+
+# https://esphome.io/components/output/
+# https://esphome.io/components/output/ledc
+output:
+  - id: oledbacklight
+    inverted: true
+    platform: ledc
+    pin: GPIO01
+    max_power: 1
+    min_power: 0
+
+light:
+  - platform: monochromatic
+    id: backlight
+    name: "${friendly_name} Display Backlight"
+    restore_mode: RESTORE_DEFAULT_ON
+    output: oledbacklight
+    default_transition_length: 250ms
+
+# https://esphome.io/components/globals.html
+globals:
+  - id: screen_key_index
+    type: int
+    initial_value: '0'
+
+# https://esphome.io/components/script.html
+script:
+  - id: activate_key_screen_script
+    parameters:
+      screen_address: string
+    then:
+      - lambda: |-
+          // Convert screen_address string (e.g., "0x01") to integer
+          uint8_t addr = static_cast<uint8_t>(strtol(screen_address.c_str(), nullptr, 0));
+          ESP_LOGD("activate_key_screen", "Activating i2c screen at address 0x%02X", addr);
+
+          // Optional: read byte from given address (can be removed if not needed)
+          auto screen_cs_opt = id(i2cdev).read_byte(0x01);
+          if (screen_cs_opt.has_value()) {
+            uint8_t screen_cs = *screen_cs_opt;
+            ESP_LOGD("activate_key_screen", "Read byte: 0x%02X", screen_cs);
+          } else {
+            ESP_LOGW("activate_key_screen", "Failed to read byte from address 0x%02X", addr);
+          }
+
+          // Example write (you can change this based on your protocol)
+          id(i2cdev).write_byte(0x01, addr);
+
+          // Interact with LCD
+          id(my_lcd).enable();
+          id(my_lcd).transfer_byte(0x11);
+          id(my_lcd).disable();
+      - delay: 20ms
+  - id: cycle_all_screens_script
+    then:
+      - logger.log:
+          format: "Cycle all screens script"
+      - script.execute:
+          id: activate_key_screen_script
+          screen_address: '0x02'
+      - delay: 30s
+      - script.execute:
+          id: activate_key_screen_script
+          screen_address: '0x04'
+      - delay: 30s
+      - script.execute:
+          id: activate_key_screen_script
+          screen_address: '0x08'
+      - delay: 30s
+      - script.execute:
+          id: activate_key_screen_script
+          screen_address: '0x10'
+      - delay: 30s
+
+# https://esphome.io/components/button/
+button:
+  # https://esphome.io/components/button/template
+  - platform: template
+    id: cycle_screens_button
+    name: "Cycle Screens Button"
+    icon: "mdi:recycle-variant"
+    on_press:
+      - logger.log: Cycle Screens Button Pressed
+      - script.execute:
+          id: cycle_all_screens_script
+
+sensor:
+  # https://esphome.io/components/sensor/rotary_encoder.html
+  - platform: rotary_encoder
+    name: "${friendly_name} Rotary Encoder"
+    id: rotaryencoder
+    internal: true
+    restore_mode: RESTORE_DEFAULT_ZERO
+    max_value: 100
+    min_value: 0
+    resolution: 1
+    filters:
+      - throttle: 1s
+    pin_a:
+      number: GPIO04
+      mode:
+        input: true
+        pullup: true
+    pin_b:
+      number: GPIO05
+      mode:
+        input: true
+        pullup: true
+    accuracy_decimals: 1
+    on_value:
+      - logger.log:
+          format: "Got a new value for the rotary encoder: %.0f"
+          args: ['x']
+    on_clockwise:
+      - logger.log: "Rotating clockwise"
+    on_anticlockwise:
+      - logger.log: "Rotating counter clockwise"
+
+# https://esphome.io/components/display/ili9xxx.html
+# https://github.com/Bodmer/TFT_eSPI/discussions/1922#discussioncomment-3786890
+display:
+  - platform: ili9xxx
+    model: ST7789V
+    id: my_lcd
+    # cs_pin: GPIO7
+    dc_pin: GPIO39
+    reset_pin: GPIO38
+    invert_colors: true
+    show_test_card: true
+    auto_clear_enabled: true
+    update_interval: 2s
+    dimensions:
+      width: 128
+      height: 128
+    transform:
+      mirror_x: true
+      mirror_y: true
+
+# https://esphome.io/cookbook/lvgl#turn-off-screen-when-idle
+number:
+  - platform: template
+    name: LVGL Screen timeout
+    optimistic: true
+    id: display_timeout
+    unit_of_measurement: "s"
+    initial_value: 45
+    restore_value: true
+    min_value: 10
+    max_value: 180
+    step: 5
+    mode: box
+
+# keyboard
+# https://github.com/esphome/esphome/pull/3917
+# https://esphome.io/components/binary_sensor/template
+binary_sensor:
+  - platform: template
+    id: key_press_binary_sensor
+    name: "Key Press Binary Sensor"
+    lambda: |-
+      if (auto key_press_opt = id(i2cdev).read_byte(0x02)) {
+        // ESP_LOGD("lambda", "Any value => Received bytes from i2c 0x02 read_byte value=0x%02X", key_press_opt);
+        if (key_press_opt.has_value()) {
+          uint8_t key_press = *key_press_opt;
+          if (key_press == 0) {
+            // ESP_LOGD("lambda", "No value => Received bytes from i2c 0x02 read_byte value=0x%02X", key_press);
+            return false;
+          } else {
+            ESP_LOGD("lambda", "Some value => Received bytes from i2c 0x02 read_byte value=0x%02X", key_press);
+            return true;
+          }
+        }
+      }
+      return false;

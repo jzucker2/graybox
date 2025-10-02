@@ -1,0 +1,24 @@
+# https://esphome.io/components/esphome
+esphome:
+  name: '${node_name}'
+  # https://github.com/esphome/feature-requests/issues/2476
+  # https://community.home-assistant.io/t/how-is-friendly-name-supposed-to-behave/542570/9
+  # see more info at https://github.com/jzucker2/goober/blob/master/notes/ESPHOME.md
+  # friendly_name: ${friendly_name}
+  # name_add_mac_suffix: false
+  area: ${area}
+  comment: ${comment}
+  project: !include ../default_project.yaml
+  # https://github.com/Xinyuan-LilyGO/T-Keyboard-S3-Pro/blob/arduino-esp32-libs_V2.0.14/platformio.ini
+  platformio_options:
+    board_build.arduino.memory_type: qio_opi
+    build_flags:
+      - "-DESP32S3"
+      - "-DBOARD_HAS_PSRAM"
+      - "-mfix-esp32-psram-cache-issue"
+  # https://esphome.io/components/esphome.html#on-boot
+  on_boot:
+    - priority: 800
+      then:
+        - switch.turn_off: camera_power_switch
+        - delay: 500ms

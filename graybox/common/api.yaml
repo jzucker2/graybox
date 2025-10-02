@@ -1,9 +1,6 @@
-# Example configuration entry
-web_server:
-  include_internal: true
-
 # Enable Home Assistant API
 # Use encryption instead of password
+# https://esphome.io/components/api.html
 api:
   encryption:
     key: !secret encryption_key

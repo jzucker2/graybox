@@ -1,0 +1,16 @@
+# https://esphome.io/components/binary_sensor/gpio.html
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: ${button_pin}
+      inverted: true
+      # mode:
+      #   input: true
+      #   # https://esphome.io/components/binary_sensor/gpio#activating-internal-pullups
+      #   pullup: true
+    name: "${friendly_name} Button"
+    id: atom_main_button
+    on_release:
+      then:
+        - logger.log: "${friendly_name} Button tapped"
+        - logger.log: "Done with ${friendly_name} button tapped!"

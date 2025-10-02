@@ -1,15 +1,6 @@
 # https://github.com/esphome/firmware/blob/main/bluetooth-proxy/m5stack-atom-lite.yaml
 # dashboard_import:
 # package_import_url: github://esphome/bluetooth-proxies/m5stack-atom-lite.yaml@main
-
-# https://esphome.io/components/external_components
-# https://github.com/esphome/esphome/pull/7695
-external_components:
-  - source: github://pr#7695
-    components: [esp32_ble_client, esp32_ble_tracker]
-    # If 0s then it always refreshes
-    refresh: 0s
-
 # https://esphome.io/components/esp32_ble_tracker.html
 esp32_ble_tracker:
   scan_parameters:
@@ -20,4 +11,4 @@ esp32_ble_tracker:
 # https://esphome.io/components/bluetooth_proxy.html
 bluetooth_proxy:
   active: true
-  # cache_services: true
+  cache_services: true

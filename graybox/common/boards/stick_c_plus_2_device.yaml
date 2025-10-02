@@ -1,0 +1,6 @@
+# https://esphome.io/components/esp32.html
+# https://devices.esphome.io/devices/M5Stack-M5StickC-PLUS2
+esp32:
+  board: m5stick-c
+  framework:
+    type: esp-idf

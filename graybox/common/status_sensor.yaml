@@ -1,4 +1,5 @@
 # https://esphome.io/components/binary_sensor/status
 binary_sensor:
   - platform: status
-    name: "${friendly_name} Status"
+    name: "${friendly_name} Connected Status"
+    id: connected_status_sensor

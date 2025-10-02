@@ -6,4 +6,7 @@ substitutions:
   box_config_file_name: example_bluetooth_proxy
 
 packages:
-  bluetooth_proxy_template: !include common/gray_bluetooth_proxy_template.yaml
+  logging: !include common/s3_logger.yaml
+  # logging: !include common/s3_debug_logger.yaml
+  wifi_base: !include common/templates/wifi_base.yaml
+  bluetooth_proxy_template: !include common/bluetooth/white_idf_bluetooth_proxy_template.yaml

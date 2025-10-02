@@ -1,0 +1,43 @@
+# https://github.com/esphome/esphome/discussions/7917
+# https://docs.m5stack.com/en/core/AtomS3R-M12
+# https://github.com/m5stack/M5AtomS3/blob/main/examples/Basics/camera/camera.ino
+# https://devices.esphome.io/devices/ESP32-CAM
+packages:
+  esphome: !include ../core/seeed_studio_sense_esphome.yaml
+  esp32: !include ../boards/seeed_studio_sense_device.yaml
+  wifi_base: !include ../templates/wifi_base.yaml
+  base_goober: !include ../templates/base_goober.yaml
+  psram: !include ../psram.yaml
+  psram_debug: !include ../psram_debug.yaml
+
+# https://esphome.io/components/i2c.html
+i2c:
+  sda: GPIO40
+  scl: GPIO39
+  id: internal_bus
+
+# https://esphome.io/components/esp32_camera.html
+esp32_camera:
+  # Image settings
+  name: Main Camera
+  id: main_camera
+  external_clock:
+    pin: GPIO10
+    frequency: 20MHz
+  i2c_id: internal_bus
+  data_pins: [GPIO15, GPIO17, GPIO18, GPIO16, GPIO14, GPIO12, GPIO11, GPIO48]
+  vsync_pin: GPIO38
+  href_pin: GPIO47
+  pixel_clock_pin: GPIO13
+  resolution: 640x480
+  # resolution: 800x600
+  # resolution: 1920X1080
+  # jpeg_quality: 10
+  # max_framerate: 20 fps
+
+# https://esphome.io/components/esp32_camera_web_server.html
+esp32_camera_web_server:
+  - port: 8080
+    mode: stream
+  - port: 8081
+    mode: snapshot

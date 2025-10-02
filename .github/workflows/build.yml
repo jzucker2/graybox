@@ -16,7 +16,7 @@ on:
     types: [published]
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref || github.event.release.tag_name }}
   cancel-in-progress: true
 
 jobs:
@@ -27,7 +27,7 @@ jobs:
       build_files: ${{ steps.choose_strings.outputs.content }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4.2.1
+        uses: actions/checkout@v5.0.0
       - name: choose strings
         id: choose_strings
         # https://serverfault.com/questions/7503/how-to-determine-if-a-bash-variable-is-empty
@@ -55,23 +55,21 @@ jobs:
   # https://github.com/esphome/workflows/tree/main
   build-firmware:
     name: Build Firmware
-    uses: jzucker2/workflows/.github/workflows/build.yml@0.1.0-alpha
+    uses: jzucker2/workflows/.github/workflows/build.yml@0.6.5-alpha
     needs:
       - choose-files
     secrets: inherit
     with:
       files: |
         ${{ needs.choose-files.outputs.build_files }}
-      cache: true
-      # esphome-version: ${{ env.ESPHOME_VERSION }}
-      esphome-version: 2024.10.2
+      esphome-version: 2025.9.3
       release-summary: ${{ github.event_name == 'published' && github.event.release.body || '' }}
       release-url: ${{ github.event_name == 'published' && github.event.release.html_url || '' }}
       release-version: ${{ github.event_name == 'published' && github.event.release.tag_name || '' }}
       # My nonsense below
       secrets-environment: graybox
-      # secrets-yaml-file: ${{ secrets.ESPHOME_SECRETS_YAML }}
-      secrets-yaml-file-path: graybox/secrets.yaml
+      # testing this too (hacky caching)
+      cache: true
 
   comment:
     if: github.event_name == 'pull_request'
@@ -115,7 +113,8 @@ jobs:
       - build-firmware
     steps:
       - name: Download artifacts
-        uses: actions/download-artifact@v4.1.8
+        # Reverted for some reason, see: https://github.com/esphome/workflows/pull/134
+        uses: actions/download-artifact@v4.3.0
         with:
           path: files
 
