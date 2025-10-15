@@ -19,7 +19,7 @@ colorama==0.4.6
 cryptography==45.0.1
 cssselect2==0.8.0
 defusedxml==0.7.1
-esphome==2025.9.3
+esphome==2025.10.0
 esphome-dashboard==20250904.0
 esphome-glyphsets==0.2.0
 esptool==5.0.2
