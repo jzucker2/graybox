@@ -114,7 +114,7 @@ jobs:
     steps:
       - name: Download artifacts
         # Reverted for some reason, see: https://github.com/esphome/workflows/pull/134
-        uses: actions/download-artifact@v4.3.0
+        uses: actions/download-artifact@v7.0.0
         with:
           path: files
 
