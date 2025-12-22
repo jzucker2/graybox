@@ -1,0 +1,211 @@
+# https://github.com/esphome/esphome/pull/7688
+# https://grafana.com/docs/loki/latest/reference/loki-http-api/
+# https://esphome.io/components/json/
+# https://esphome.io/components/http_request/
+# https://esphome.io/components/time/
+# https://esphome.io/components/time/homeassistant/
+# https://github.com/TheStaticTurtle/esphome_syslog
+# https://github.com/esphome/esphome/tree/dev/esphome/components/syslog
+# https://github.com/esphome/esphome/tree/dev/esphome/components/logger
+substitutions:
+  loki_url: !secret loki_url
+
+# https://esphome.io/components/globals/
+globals:
+  - id: loki_errors_count
+    type: int
+    restore_value: false  # reset on reboot
+    initial_value: '0'
+
+sensor:
+  # https://esphome.io/components/sensor/template/
+  - platform: template
+    name: "Loki Errors Counter"
+    id: loki_errors_counter_sensor
+    lambda: 'return id(loki_errors_count);'
+    update_interval: 2s
+    icon: "mdi:counter"
+    state_class: "measurement"
+
+# https://esphome.io/components/logger/
+logger:
+  on_message:
+    then:
+      # Consider ethernet is_connected()
+      - lambda: |-
+          // Check network first, and DO NOT log!
+          if (!network::is_connected()) {
+            return;
+          }
+          // First check if control switch is enabled
+          if (id(enable_loki_logging_switch).state) {
+            // loki control switch is ON, do something here
+            // Getting errors with utcnow() so using now() instead
+            auto now = id(esptime).now();
+            if (!now.is_valid()) {
+              return;
+            }
+            // We finally have valid logging conditions, so push to loki with script
+            id(push_logs_script)->execute(now.timestamp, level, tag, message);
+          } else {
+            // loki control switch is OFF, return without logging
+            return;
+          }
+
+# https://esphome.io/components/switch/
+switch:
+  # https://esphome.io/components/switch/template
+  - platform: template
+    name: "Enable Loki Logging Switch"
+    id: enable_loki_logging_switch
+    optimistic: true
+    icon: "mdi:math-log"
+    restore_mode: ALWAYS_ON  # Ensures that it tries again every reboot
+
+# https://esphome.io/components/number/
+number:
+  # https://esphome.io/components/number/template/
+  - platform: template
+    id: loki_max_errors_threshold
+    name: "Loki Max Errors Threshold"
+    icon: "mdi:counter"
+    optimistic: yes
+    initial_value: 5
+    restore_value: true
+    min_value: 1
+    max_value: 15
+    step: 1
+    on_value:
+      then:
+        - lambda: |-
+            // Quick check to ensure we did not exceed *new* error threshold
+            if (id(loki_errors_count) >= x) {
+              id(enable_loki_logging_switch).publish_state(false);
+            }
+
+# https://esphome.io/components/script/
+script:
+  - id: process_loki_response_script
+    mode: queued
+    max_runs: 10
+    parameters:
+      is_success: bool
+    then:
+      - lambda: |-
+          if (is_success) {
+            // success: clear the error streak
+            id(loki_errors_count) = 0;
+          } else {
+            // failure: increment the error streak
+            id(loki_errors_count) += 1;
+            // disable if crossing error threshold
+            if (id(loki_errors_count) >= id(loki_max_errors_threshold).state) {
+              id(enable_loki_logging_switch).publish_state(false);
+            }
+          }
+
+  - id: push_logs_script
+    mode: parallel
+    # Note: this means logs can be dropped but prevents overloading if logs are too noisy
+    max_runs: 10
+    parameters:
+      log_ts: int
+      log_level: int
+      tag: string
+      message: string
+    then:
+      - if:
+          condition:
+            - switch.is_on: enable_loki_logging_switch
+          then:
+            - http_request.post:
+                url: "${loki_url}/loki/api/v1/push"
+                request_headers:
+                  Content-Type: application/json
+                json: |-
+                  // Loki expects: {"streams":[{"stream":{labels...},"values":[["<ns>","<line>"]]}]}
+
+                  // Root: streams[]
+                  JsonArray streams = root["streams"].to<JsonArray>();
+
+                  // streams[0] object (via add()+to<>())
+                  JsonObject entry = streams.add<JsonObject>();
+
+                  // entry.stream (labels)
+                  JsonObject labels = entry["stream"].to<JsonObject>();
+                  // add a platform tag to make it easy to fetch all logs
+                  labels["platform"] = "esphome";
+                  // add a custom tag for this hacky component
+                  labels["custom"] = "mvp_loki_logger";
+                  // Add node name
+                  labels["node"] = App.get_name();
+                  // Check for area and add if not empty
+                  std::string node_area = App.get_area();
+                  if (!node_area.empty()) {
+                    labels["area"] = node_area;
+                  }
+                  // Check for friendly_name and add if not empty
+                  std::string node_friendly_name = App.get_friendly_name();
+                  if (!node_friendly_name.empty()) {
+                    labels["friendly_name"] = node_friendly_name;
+                  }
+                  labels["tag"] = tag;
+                  labels["log_level"] = log_level;
+
+                  // entry.values = [ [ "<ts_ns>", "<line>" ] ]
+                  JsonArray values = entry["values"].to<JsonArray>();
+                  JsonArray log_line = values.add<JsonArray>();
+
+                  // seconds -> nanoseconds as string
+                  long long ns = (long long) log_ts * 1000000000LL;
+                  char tsbuf[32];
+                  snprintf(tsbuf, sizeof(tsbuf), "%lld", ns);
+
+                  log_line.add(tsbuf);
+
+                  // ---- Minimal ANSI fix per ESPHome logger macros ----
+                  // Trim leading "\x1B[0;XYm" or "\x1B[1;XYm" (7 bytes), then
+                  // trim trailing "\x1B[0m" (4 bytes) if present.
+                  const char *p = message.c_str();
+                  size_t n = strlen(p);
+
+                  // Leading color: ESC '[' ('0' or '1') ';' digit digit 'm'
+                  if (n >= 7 &&
+                      (unsigned char)p[0] == 0x1B && p[1] == '[' &&
+                      (p[2] == '0' || p[2] == '1') && p[3] == ';' &&
+                      (p[4] >= '0' && p[4] <= '9') &&
+                      (p[5] >= '0' && p[5] <= '9') &&
+                      p[6] == 'm') {
+                    p += 7;
+                    n -= 7;
+                  }
+
+                  // Trailing reset: ESC '[0m'
+                  if (n >= 4 &&
+                      (unsigned char)p[n-4] == 0x1B && p[n-3] == '[' &&
+                      p[n-2] == '0' && p[n-1] == 'm') {
+                    n -= 4;
+                  }
+
+                  std::string clean_line(p, n);
+                  log_line.add(clean_line.c_str());
+                on_response:
+                  then:
+                    - lambda: |-
+                        // status_code is provided by http_request on_response
+                        const int sc = response->status_code;
+
+                        if (sc >= 200 && sc < 300) {
+                          // success: clear the error streak
+                          id(process_loki_response_script)->execute(true);
+                        } else {
+                          // non-2xx: count it
+                          // Increment loki errors script
+                          id(process_loki_response_script)->execute(false);
+                        }
+                on_error:
+                  then:
+                    - lambda: |-
+                        // Network failure, timeout, DNS, etc.
+                        // Increment loki errors script
+                        id(process_loki_response_script)->execute(false);

@@ -17,3 +17,5 @@ packages:
   board_info: !include ../board_info.yaml
   time: !include ../hass_time.yaml
   debug: !include ../debug.yaml
+  # Newest feature is custom hacky prototype loki logger
+  loki: !include ../templates/loki_mvp.yaml
