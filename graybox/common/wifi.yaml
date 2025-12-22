@@ -1,4 +1,7 @@
+# https://esphome.io/components/wifi/
 wifi:
   id: wifi_device
   ssid: !secret wifi_ssid
   password: !secret wifi_password
+  # https://esphome.io/components/wifi/#wifi-power_save_mode
+  power_save_mode: none

@@ -1,0 +1,55 @@
+# https://shop.m5stack.com/products/atom-socket-kit-hlw8023-jp-us
+# https://esphome.io/components/uart/
+uart:
+  rx_pin: "${rx_pin}"
+  baud_rate: 4800
+  parity: EVEN
+
+# https://esphome.io/components/sensor/hlw8032/
+sensor:
+  - platform: hlw8032
+    voltage:
+      name: HLW8032 Voltage
+      id: hlw8032_voltage
+      filters:
+        - throttle_average: 30s
+        - round: 1
+
+    current:
+      name: HLW8032 Current
+      id: hlw8032_current
+      filters:
+        - throttle_average: 30s
+        - round: 3
+        - lambda: |-
+            if (x < 0.01) return 0.0f;
+            return x;
+
+    power:
+      name: HLW8032 Power
+      id: hlw8032_power
+      filters:
+        - throttle_average: 30s
+        - round: 1
+
+    apparent_power:
+      name: HLW8032 Apparent Power
+      id: hlw8032_apparent_power
+      filters:
+        - throttle_average: 30s
+        - round: 1
+
+    power_factor:
+      name: HLW8032 Power Factor
+      id: hlw8032_power_factor
+      filters:
+        - throttle_average: 30s
+        - clamp:
+            min_value: 0.0
+            max_value: 1.0
+        - round: 2
+
+  # https://esphome.io/components/sensor/total_daily_energy/
+  - platform: total_daily_energy
+    name: "Total Daily Energy"
+    power_id: hlw8032_power

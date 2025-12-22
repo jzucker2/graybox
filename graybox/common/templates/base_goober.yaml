@@ -18,6 +18,4 @@ packages:
   time: !include ../hass_time.yaml
   debug: !include ../debug.yaml
   # Newest feature is custom hacky prototype loki logger
-  # loki: !include ../templates/loki_mvp.yaml
-  # Trying out the actual component
-  loki: !include ../templates/loki_component.yaml
+  loki: !include ../templates/loki_mvp.yaml

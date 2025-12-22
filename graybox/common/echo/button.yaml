@@ -7,7 +7,8 @@ binary_sensor:
     pin:
       number: GPIO39
       inverted: true
-    name: Button
-    disabled_by_default: true
-    entity_category: diagnostic
+      mode:
+        input: true
+    name: Atom Button
     id: echo_button
+    icon: "mdi:button-pointer"

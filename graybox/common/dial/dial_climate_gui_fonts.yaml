@@ -1,0 +1,78 @@
+# https://esphome.io/components/font.html
+# https://esphome.io/cookbook/lvgl/#mdi-icons-in-text
+font:
+  - file: "gfonts://Roboto"
+    size: 16
+    id: mdi_16
+    bpp: 4
+    extras:
+      - file: "common/fonts/materialdesignicons-webfont.ttf"
+        glyphs: [
+          "\U000F050F",  # mdi-thermometer
+          "\U000F10C2",  # mdi-thermometer-high
+          "\U000F10C3",  # mdi-thermometer-low
+          "\U000F0E04",  # mdi-thermometer-minus
+          "\U000F0E05",  # mdi-thermometer-plus
+          "\U000F18D6",  # mdi-sun-thermometer
+          "\U000F1B0F",  # mdi-thermometer-auto
+          "\U000F1531",  # mdi-thermometer-off
+          "\U000F0E01",  # mdi-thermometer-alert
+          "\U000F1A7F",  # mdi-thermometer-check
+          "\U000F0505",  # mdi-temperature-fahrenheit
+          "\U000F1352",  # mdi-hvac
+          "\U000F159E",  # mdi-hvac-off
+          "\U000F171D",  # mdi-fan-auto
+          "\U000F0210",  # mdi-fan
+          "\U000F081D",  # mdi-fan-off
+          "\U000F1A45",  # mdi-heat-wave
+          "\U000F0438",  # mdi-radiator
+          "\U000F0AD7",  # mdi-radiator-disabled
+          "\U000F0AD8",  # mdi-radiator-off
+          "\U000F0F54",  # mdi-home-thermometer (home mode)
+          "\U000F0E66",  # mdi-sprout (eco mode)
+          "\U000F0A48",  # mdi-exit-run (away mode)
+          "\U000F04B9",  # mdi-sofa (comfort mode)
+          "\U000F14DE",  # mdi-rocket-launch (boost mode)
+          "\U000F04B2",  # mdi-sleep (sleep mode)
+          "\U000F035E",  # mdi-menu-left (navigation)
+          "\U000F035F",  # mdi-menu-right (navigation)
+          "\U000F02DC",  # mdi-home
+        ]
+
+  - file: "gfonts://Roboto"
+    size: 14
+    id: mdi_14
+    bpp: 4
+    extras:
+      - file: "common/fonts/materialdesignicons-webfont.ttf"
+        glyphs: [
+          "\U000F050F",  # mdi-thermometer
+          "\U000F10C2",  # mdi-thermometer-high
+          "\U000F10C3",  # mdi-thermometer-low
+          "\U000F0E04",  # mdi-thermometer-minus
+          "\U000F0E05",  # mdi-thermometer-plus
+          "\U000F18D6",  # mdi-sun-thermometer
+          "\U000F1B0F",  # mdi-thermometer-auto
+          "\U000F1531",  # mdi-thermometer-off
+          "\U000F0E01",  # mdi-thermometer-alert
+          "\U000F1A7F",  # mdi-thermometer-check
+          "\U000F0505",  # mdi-temperature-fahrenheit
+          "\U000F1352",  # mdi-hvac
+          "\U000F159E",  # mdi-hvac-off
+          "\U000F171D",  # mdi-fan-auto
+          "\U000F0210",  # mdi-fan
+          "\U000F081D",  # mdi-fan-off
+          "\U000F1A45",  # mdi-heat-wave
+          "\U000F0438",  # mdi-radiator
+          "\U000F0AD7",  # mdi-radiator-disabled
+          "\U000F0AD8",  # mdi-radiator-off
+          "\U000F0F54",  # mdi-home-thermometer (home mode)
+          "\U000F0E66",  # mdi-sprout (eco mode)
+          "\U000F0A48",  # mdi-exit-run (away mode)
+          "\U000F04B9",  # mdi-sofa (comfort mode)
+          "\U000F14DE",  # mdi-rocket-launch (boost mode)
+          "\U000F04B2",  # mdi-sleep (sleep mode)
+          "\U000F035E",  # mdi-menu-left (navigation)
+          "\U000F035F",  # mdi-menu-right (navigation)
+          "\U000F02DC",  # mdi-home
+        ]

@@ -2,6 +2,6 @@
 # https://esphome.io/components/http_request.html
 # https://github.com/esphome/esphome/pull/7790
 http_request:
-  useragent: "esphome/goober_${node_name}"
+  useragent: "esphome/graybox_${node_name}"
   timeout: 60s
   verify_ssl: false
