@@ -1,4 +1,0 @@
-# https://esphome.io/components/rp2040.html
-# https://github.com/esphome/esphome/pull/8418
-rp2040:
-  board: rpipicow
