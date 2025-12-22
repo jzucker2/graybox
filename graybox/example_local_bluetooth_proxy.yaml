@@ -1,9 +1,9 @@
 substitutions:
-  node_name: example-bluetooth-proxy
-  friendly_name: Example Bluetooth Proxy
+  node_name: example-local-bluetooth-proxy
+  friendly_name: Example Local Bluetooth Proxy
   area: Example
-  comment: "This is a decent iteration"
-  box_config_file_name: example_bluetooth_proxy
+  comment: "This is a decent iteration that is built locally"
+  box_config_file_name: example_local_bluetooth_proxy
 
 packages:
   logging: !include common/s3_logger.yaml

@@ -36,14 +36,14 @@ jobs:
             echo "provide pull request files"
             {
               echo 'content<<EOF'
-              echo "graybox/example_bluetooth_proxy.yaml"
+              echo "graybox/example_local_bluetooth_proxy.yaml"
               echo EOF
             } >> "$GITHUB_OUTPUT"
           else
             echo "provide all release files"
             {
               echo 'content<<EOF'
-              echo "graybox/example_bluetooth_proxy.yaml"
+              echo "graybox/example_local_bluetooth_proxy.yaml"
               echo EOF
             } >> "$GITHUB_OUTPUT"
           fi
