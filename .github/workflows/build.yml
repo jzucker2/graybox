@@ -37,6 +37,7 @@ jobs:
             {
               echo 'content<<EOF'
               echo "graybox/example_local_bluetooth_proxy.yaml"
+              echo "graybox/example_remote_bluetooth_proxy.yaml"
               echo EOF
             } >> "$GITHUB_OUTPUT"
           else
@@ -44,6 +45,7 @@ jobs:
             {
               echo 'content<<EOF'
               echo "graybox/example_local_bluetooth_proxy.yaml"
+              echo "graybox/example_remote_bluetooth_proxy.yaml"
               echo EOF
             } >> "$GITHUB_OUTPUT"
           fi
