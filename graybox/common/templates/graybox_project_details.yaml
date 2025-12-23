@@ -1,0 +1,2 @@
+packages:
+  dashboard_import: !include ../default_dashboard_import.yaml

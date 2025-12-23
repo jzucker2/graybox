@@ -9,7 +9,6 @@ packages:
   uptime: !include ../uptime.yaml
   status_sensor: !include ../status_sensor.yaml
   internal_temp: !include ../internal_temp.yaml
-  dashboard_import: !include ../default_dashboard_import.yaml
   update: !include ../updates.yaml
   update_beta_switch: !include ../update_beta_switch.yaml
   prometheus: !include ../prometheus.yaml
