@@ -8,7 +8,6 @@ substitutions:
   box_config_file_name: example_env_pro_sensor
 
 packages:
-  dashboard_import: !include ../default_dashboard_import.yaml
   graybox_complex:
     url: https://github.com/jzucker2/graybox
     files:

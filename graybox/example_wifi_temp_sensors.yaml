@@ -11,7 +11,6 @@ substitutions:
   update_interval_value: "60s"
 
 packages:
-  dashboard_import: !include ../default_dashboard_import.yaml
   graybox_complex:
     url: https://github.com/jzucker2/graybox
     files:

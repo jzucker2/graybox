@@ -6,7 +6,6 @@ substitutions:
   box_config_file_name: example_remote_bluetooth_proxy
 
 packages:
-  dashboard_import: !include ../default_dashboard_import.yaml
   graybox:
     url: https://github.com/jzucker2/graybox
     files: [

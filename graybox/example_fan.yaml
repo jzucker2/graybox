@@ -9,7 +9,6 @@ substitutions:
   rpm_pin: "GPIO26"
 
 packages:
-  dashboard_import: !include ../default_dashboard_import.yaml
   graybox_complex:
     url: https://github.com/jzucker2/graybox
     files:
