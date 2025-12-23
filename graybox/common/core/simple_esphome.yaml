@@ -8,7 +8,7 @@ esphome:
   # name_add_mac_suffix: false
   area: ${area}
   comment: ${comment}
-  project: !include ../default_project.yaml
+  # project: !include ../default_project.yaml
   # https://github.com/espressif/esp-idf/blob/5c51472e82a58098dda8d40a1c4f250c374fc900/docs/en/migration-guides/release-5.x/5.0/peripherals.rst#api-changes
   # Workaround for Button (GPIO39) randomly triggering
   # Increases power usage slightly (~1mA)
