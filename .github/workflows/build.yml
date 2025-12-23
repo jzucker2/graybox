@@ -36,6 +36,7 @@ jobs:
             echo "provide pull request files"
             {
               echo 'content<<EOF'
+              echo "graybox/example_air_q_sensor_v1.yaml"
               echo "graybox/example_local_bluetooth_proxy.yaml"
               echo "graybox/example_remote_bluetooth_proxy.yaml"
               echo "graybox/example_remote_ethernet_bluetooth_proxy.yaml"
@@ -45,6 +46,7 @@ jobs:
             echo "provide all release files"
             {
               echo 'content<<EOF'
+              echo "graybox/example_air_q_sensor_v1.yaml"
               echo "graybox/example_local_bluetooth_proxy.yaml"
               echo "graybox/example_remote_bluetooth_proxy.yaml"
               echo "graybox/example_remote_ethernet_bluetooth_proxy.yaml"

@@ -1,7 +1,7 @@
 substitutions:
   node_name: example-remote-bt-proxy
   friendly_name: Example Remote Bluetooth Proxy
-  area: Example
+  area: Example Room
   comment: "This is a decent iteration that is built from remote"
   box_config_file_name: example_remote_bluetooth_proxy
 

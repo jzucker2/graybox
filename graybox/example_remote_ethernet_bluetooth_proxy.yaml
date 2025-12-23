@@ -1,7 +1,7 @@
 substitutions:
   node_name: example-remote-eth-bt-proxy
   friendly_name: Example Remote Ethernet Bluetooth Proxy
-  area: Example
+  area: Example Room
   comment: "This is a decent iteration that is built from remote for ethernet"
   box_config_file_name: example_remote_ethernet_bluetooth_proxy
 
