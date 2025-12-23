@@ -11,7 +11,7 @@ packages:
     files: [
       graybox/common/s3_logger.yaml,
       graybox/common/templates/wifi_base.yaml,
-      graybox/common/bluetooth/white_idf_bluetooth_proxy_template.yaml
+      graybox/common/bluetooth/white_idf_bluetooth_proxy_template.yaml,
       graybox/common/templates/graybox_project_details.yaml,
     ]
     ref: master
