@@ -8,7 +8,7 @@ esphome:
   # name_add_mac_suffix: false
   area: ${area}
   comment: ${comment}
-  project: !include ../default_project.yaml
+  # project: !include ../default_project.yaml
   platformio_options:
     build_flags: -DBOARD_HAS_PSRAM
     board_build.arduino.memory_type: qio_opi

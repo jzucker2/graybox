@@ -8,4 +8,4 @@ esphome:
   # name_add_mac_suffix: false
   area: ${area}
   comment: ${comment}
-  project: !include ../default_project.yaml
+  # project: !include ../default_project.yaml

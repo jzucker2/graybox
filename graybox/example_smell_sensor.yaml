@@ -1,0 +1,32 @@
+substitutions:
+  node_name: examplesmellsensor
+  friendly_name: Example Smell Sensor
+  area: Example Room
+  comment: "This senses methane gas as well as others as an example"
+  box_config_file_name: example_smell_sensor
+
+packages:
+  graybox_complex:
+    url: https://github.com/jzucker2/graybox
+    files:
+      - path: graybox/common/atom_idf_light.yaml
+        vars:
+          light_pin: 27
+      - path: graybox/common/atom_idf_button.yaml
+        vars:
+          button_pin: 39
+    ref: master
+    refresh: 0d
+  graybox:
+    url: https://github.com/jzucker2/graybox
+    files: [
+      graybox/common/core/simple_esphome.yaml,
+      graybox/common/default_logger.yaml,
+      graybox/common/boards/m5atom_idf_device.yaml,
+      graybox/common/templates/wifi_base.yaml,
+      graybox/common/templates/base_goober.yaml,
+      graybox/common/default_i2c.yaml,
+      graybox/common/smell_sensor.yaml,
+    ]
+    ref: master
+    refresh: 0d

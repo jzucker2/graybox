@@ -16,6 +16,7 @@ packages:
     files: [
       graybox/common/default_logger.yaml,
       graybox/common/air_q_sensor/base_template.yaml,
+      graybox/common/templates/graybox_project_details.yaml,
     ]
-    ref: master
+    ref: switching-over-more-examples
     refresh: 0d
