@@ -37,6 +37,7 @@ jobs:
             {
               echo 'content<<EOF'
               echo "graybox/example_air_q_sensor_v1.yaml"
+              echo "graybox/example_atom_plug.yaml"
               # echo "graybox/example_ethernet_temp_sensors.yaml"
               # echo "graybox/example_wifi_temp_sensors.yaml"
               echo "graybox/example_env_pro_sensor.yaml"
@@ -53,6 +54,7 @@ jobs:
             {
               echo 'content<<EOF'
               echo "graybox/example_air_q_sensor_v1.yaml"
+              echo "graybox/example_atom_plug.yaml"
               # echo "graybox/example_ethernet_temp_sensors.yaml"
               # echo "graybox/example_wifi_temp_sensors.yaml"
               echo "graybox/example_env_pro_sensor.yaml"

@@ -1,0 +1,51 @@
+substitutions:
+  node_name: exampleatomplug
+  friendly_name: Example Atom Plug
+  area: Example Room
+  comment: "This is an example of an M5Stack Atom Plug"
+  box_config_file_name: example_atom_plug
+  relay_pin: GPIO23
+  rx_pin: GPIO22
+
+packages:
+  graybox_complex:
+    url: https://github.com/jzucker2/graybox
+    files:
+      - path: graybox/common/atom_idf_light.yaml
+        vars:
+          light_pin: 27
+      - path: graybox/common/atom_idf_button.yaml
+        vars:
+          button_pin: 39
+    ref: master
+    refresh: 0d
+  graybox:
+    url: https://github.com/jzucker2/graybox
+    files: [
+      graybox/common/core/simple_esphome.yaml,
+      graybox/common/default_logger.yaml,
+      graybox/common/boards/m5atom_idf_device.yaml,
+      graybox/common/templates/wifi_base.yaml,
+      graybox/common/templates/base_goober.yaml,
+      graybox/common/m5_stack_power_sensor.yaml,
+    ]
+    ref: master
+    refresh: 0d
+
+## Device-specific
+
+# for power monitoring:
+# * https://github.com/esphome/feature-requests/issues/1386
+# * https://esphome.io/components/sensor/hlw8012.html
+# * https://esphome.io/components/sensor/cse7766.html
+# * https://community.home-assistant.io/t/multifunctional-smart-home-controller-atom-on-esp32/297606/8
+
+# https://devices.esphome.io/devices/Generic-Relay
+# https://esphome.io/components/switch/gpio.html
+switch:
+  - platform: gpio
+    name: "${friendly_name} Plug Relay"
+    id: plug_relay_switch
+    pin: ${relay_pin}
+    icon: "mdi:air-humidifier"
+    restore_mode: RESTORE_DEFAULT_OFF
