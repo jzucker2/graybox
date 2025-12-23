@@ -28,6 +28,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v5.0.0
+        with:
+          fetch-depth: 0
       - name: choose strings
         id: choose_strings
         # https://serverfault.com/questions/7503/how-to-determine-if-a-bash-variable-is-empty
