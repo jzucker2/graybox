@@ -5,12 +5,9 @@ substitutions:
   comment: "This is a decent iteration that is built locally"
   box_config_file_name: example_local_bluetooth_proxy
 
-esphome:
-  project: !include common/default_project.yaml
-
 packages:
   logging: !include common/s3_logger.yaml
   # logging: !include common/s3_debug_logger.yaml
   wifi_base: !include common/templates/wifi_base.yaml
-  dashboard_import: !include common/default_dashboard_import.yaml
   bluetooth_proxy_template: !include common/bluetooth/white_idf_bluetooth_proxy_template.yaml
+  graybox_project_details: !include common/templates/graybox_project_details.yaml
