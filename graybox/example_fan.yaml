@@ -28,6 +28,7 @@ packages:
       graybox/common/boards/m5atom_idf_device.yaml,
       graybox/common/templates/ethernet_atom_base.yaml,
       graybox/common/templates/base_goober.yaml,
+      graybox/common/templates/graybox_project_details.yaml,
       graybox/common/fans/base_fan_template.yaml,
       graybox/common/fans/fan_rpm_sensor.yaml,
     ]

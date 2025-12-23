@@ -54,6 +54,7 @@ packages:
       graybox/common/boards/m5atom_idf_device.yaml,
       graybox/common/templates/wifi_base.yaml,
       graybox/common/templates/base_goober.yaml,
+      graybox/common/templates/graybox_project_details.yaml,
       graybox/common/default_i2c.yaml,
     ]
     ref: master
