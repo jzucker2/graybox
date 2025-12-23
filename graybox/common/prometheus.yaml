@@ -1,4 +1,5 @@
 # https://github.com/esphome/esphome/pull/9941
+# Issue with prometheus changes too
 external_components:
   - source: github://pr#9941
     components: [prometheus]
