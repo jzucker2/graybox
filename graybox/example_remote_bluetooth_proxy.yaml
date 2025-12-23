@@ -1,0 +1,17 @@
+substitutions:
+  node_name: example-remote-bt-proxy
+  friendly_name: Example Remote Bluetooth Proxy
+  area: Example
+  comment: "This is a decent iteration that is built from remote"
+  box_config_file_name: example_remote_bluetooth_proxy
+
+packages:
+  graybox:
+    url: https://github.com/jzucker2/graybox
+    files: [
+      graybox/common/s3_logger.yaml,
+      graybox/common/templates/wifi_base.yaml,
+      graybox/common/bluetooth/white_idf_bluetooth_proxy_template.yaml
+    ]
+    ref: master
+    refresh: 0d
