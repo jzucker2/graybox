@@ -1,0 +1,76 @@
+substitutions:
+  node_name: exampleethtempsensors
+  friendly_name: Example Ethernet Temp Sensors
+  area: Example Room
+  comment: "Temperature sensors connected via ethernet"
+  box_config_file_name: example_ethernet_temp_sensors
+  zeroth_sensor_name: "Top Cabinet Shelf"
+  first_sensor_name: "Middle Cabinet Shelf"
+  second_sensor_name: "Bottom Cabinet Shelf"
+  oversampling_value: "16x"
+  update_interval_value: "60s"
+
+packages:
+  - graybox_complex:
+      url: https://github.com/jzucker2/graybox
+      files:
+        - path: graybox/common/atom_idf_light.yaml
+          vars:
+            light_pin: 27
+        - path: graybox/common/atom_idf_button.yaml
+          vars:
+            button_pin: 39
+        - path: graybox/common/env_iv_sht4x_sensor.yaml
+          vars:
+            env_iv_i2c_id: "multiplex0channel0"
+            env_iv_sensor_name: "${zeroth_sensor_name}"
+        - path: graybox/common/env_iv_bmp280_sensor.yaml
+          vars:
+            env_iv_i2c_id: "multiplex0channel0"
+            env_iv_sensor_name: "${zeroth_sensor_name}"
+        - path: graybox/common/env_iv_sht4x_sensor.yaml
+          vars:
+            env_iv_i2c_id: "multiplex0channel1"
+            env_iv_sensor_name: "${first_sensor_name}"
+        - path: graybox/common/env_iv_bmp280_sensor.yaml
+          vars:
+            env_iv_i2c_id: "multiplex0channel1"
+            env_iv_sensor_name: "${first_sensor_name}"
+        - path: graybox/common/env_iv_sht4x_sensor.yaml
+          vars:
+            env_iv_i2c_id: "multiplex0channel2"
+            env_iv_sensor_name: "${second_sensor_name}"
+        - path: graybox/common/env_iv_bmp280_sensor.yaml
+          vars:
+            env_iv_i2c_id: "multiplex0channel2"
+            env_iv_sensor_name: "${second_sensor_name}"
+      ref: master
+      refresh: 0d
+
+  - graybox:
+      url: https://github.com/jzucker2/graybox
+      files: [
+        graybox/common/core/simple_esphome.yaml,
+        graybox/common/default_logger.yaml,
+        graybox/common/boards/m5atom_idf_device.yaml,
+        graybox/common/templates/ethernet_atom_base.yaml,
+        graybox/common/templates/base_goober.yaml,
+        graybox/common/default_i2c.yaml,
+      ]
+      ref: master
+      refresh: 0d
+
+# temp sensors
+
+# https://esphome.io/components/tca9548a
+tca9548a:
+  - address: 0x70
+    id: multiplex0
+    i2c_id: grove
+    channels:
+      - bus_id: multiplex0channel0
+        channel: 0
+      - bus_id: multiplex0channel1
+        channel: 1
+      - bus_id: multiplex0channel2
+        channel: 2

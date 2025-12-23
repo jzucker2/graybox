@@ -1,0 +1,34 @@
+# https://esphome.io/components/sensor/bme68x_bsec2
+# https://docs.m5stack.com/en/unit/ENV%20Pro%20Unit
+substitutions:
+  node_name: exampleenvprosensor
+  friendly_name: Example Env Pro Sensor
+  area: Example Room
+  comment: "Example sensor for the ENV IV pro sensor"
+  box_config_file_name: example_env_pro_sensor
+
+packages:
+  graybox_complex:
+    url: https://github.com/jzucker2/graybox
+    files:
+      - path: graybox/common/atom_idf_light.yaml
+        vars:
+          light_pin: 27
+      - path: graybox/common/atom_idf_button.yaml
+        vars:
+          button_pin: 39
+    ref: master
+    refresh: 0d
+  graybox:
+    url: https://github.com/jzucker2/graybox
+    files: [
+      graybox/common/core/simple_esphome.yaml,
+      graybox/common/default_logger.yaml,
+      graybox/common/boards/m5atom_idf_device.yaml,
+      graybox/common/templates/wifi_base.yaml,
+      graybox/common/templates/base_goober.yaml,
+      graybox/common/default_i2c.yaml,
+      graybox/common/env_pro_sensor.yaml,
+    ]
+    ref: master
+    refresh: 0d

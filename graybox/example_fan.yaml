@@ -1,0 +1,35 @@
+# https://github.com/patrickcollins12/esphome-fan-controller
+substitutions:
+  node_name: exampledeskfan
+  friendly_name: Example Fan
+  area: Example Room
+  comment: "Fan controller example"
+  box_config_file_name: example_fan
+  pwm_pin: "GPIO32"
+  rpm_pin: "GPIO26"
+
+packages:
+  graybox_complex:
+    url: https://github.com/jzucker2/graybox
+    files:
+      - path: graybox/common/atom_idf_light.yaml
+        vars:
+          light_pin: 27
+      - path: graybox/common/atom_idf_button.yaml
+        vars:
+          button_pin: 39
+    ref: master
+    refresh: 0d
+  graybox:
+    url: https://github.com/jzucker2/graybox
+    files: [
+      graybox/common/core/simple_esphome.yaml,
+      graybox/common/default_logger.yaml,
+      graybox/common/boards/m5atom_idf_device.yaml,
+      graybox/common/templates/ethernet_atom_base.yaml,
+      graybox/common/templates/base_goober.yaml,
+      graybox/common/fans/base_fan_template.yaml,
+      graybox/common/fans/fan_rpm_sensor.yaml,
+    ]
+    ref: master
+    refresh: 0d
