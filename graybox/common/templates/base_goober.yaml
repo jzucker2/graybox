@@ -13,6 +13,7 @@ packages:
   update_beta_switch: !include ../update_beta_switch.yaml
   prometheus: !include ../prometheus.yaml
   project_info: !include ../project_info.yaml
+  graybox_info: !include ../graybox_version_info.yaml
   board_info: !include ../board_info.yaml
   time: !include ../hass_time.yaml
   debug: !include ../debug.yaml
