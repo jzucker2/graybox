@@ -1,5 +1,5 @@
 substitutions:
-  node_name: example-remote-bluetooth-proxy
+  node_name: example-remote-bt-proxy
   friendly_name: Example Remote Bluetooth Proxy
   area: Example
   comment: "This is a decent iteration that is built from remote"
