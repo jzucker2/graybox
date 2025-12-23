@@ -25,5 +25,7 @@ jobs:
     steps:
       - name: ⤵️ Check out configuration from GitHub
         uses: actions/checkout@v5.0.0
+        with:
+          fetch-depth: 0
       - name: 🚀 Run yamllint
         run: yamllint --strict .
