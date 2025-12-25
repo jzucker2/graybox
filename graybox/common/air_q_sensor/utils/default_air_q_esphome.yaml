@@ -3,7 +3,7 @@ esphome:
   name: ${node_name}
   area: ${area}
   comment: ${comment}
-  project: !include ../../default_project.yaml
+  # project: !include ../../default_project.yaml
   platformio_options:
     board_build.mcu: esp32s3
     board_build.name: "M5Stack StampS3"
