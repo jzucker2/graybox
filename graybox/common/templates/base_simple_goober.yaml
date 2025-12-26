@@ -1,0 +1,21 @@
+# This is shared common goober code for any deployed or dev esp32 at Albion
+packages:
+  safe_mode: !include ../safe_mode.yaml
+  restart: !include ../restart.yaml
+  web_server: !include ../web_server.yaml
+  api: !include ../api.yaml
+  http: !include ../http.yaml
+  version: !include ../version.yaml
+  uptime: !include ../uptime.yaml
+  status_sensor: !include ../status_sensor.yaml
+  internal_temp: !include ../internal_temp.yaml
+  update: !include ../updates.yaml
+  update_beta_switch: !include ../update_beta_switch.yaml
+  prometheus: !include ../prometheus.yaml
+  project_info: !include ../project_info.yaml
+  graybox_info: !include ../graybox_version_info.yaml
+  board_info: !include ../board_info.yaml
+  time: !include ../hass_time.yaml
+  debug: !include ../debug.yaml
+  # Newest feature is custom hacky prototype loki logger but doesn't work in bt proxies
+  # loki: !include ../templates/loki_mvp.yaml
