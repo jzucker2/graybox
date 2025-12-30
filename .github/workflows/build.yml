@@ -85,10 +85,10 @@ jobs:
       files: |
         ${{ needs.choose-files.outputs.build_files }}
       # esphome-version: ${{ env.ESPHOME_VERSION }}
-      esphome-version: 2025.12.2
-      release-summary: ${{ github.event_name == 'published' && github.event.release.body || '' }}
-      release-url: ${{ github.event_name == 'published' && github.event.release.html_url || '' }}
-      release-version: ${{ github.event_name == 'published' && github.event.release.tag_name || '' }}
+      esphome-version: 2025.12.3
+      release-summary: ${{ github.event_name == 'release' && github.event.action == 'published' && github.event.release.body || '' }}
+      release-url: ${{ github.event_name == 'release' && github.event.action == 'published' && github.event.release.html_url || '' }}
+      release-version: ${{ github.event_name == 'release' && github.event.action == 'published' && github.event.release.tag_name || '' }}
       # My nonsense below
       secrets-environment: graybox
       # testing this too (hacky caching)
@@ -128,6 +128,7 @@ jobs:
             })
 
   upload-on-release:
+    if: github.event_name == 'release' && github.event.action == 'published'
     name: Upload artifacts on release
     runs-on: ubuntu-latest
     permissions:
@@ -146,9 +147,9 @@ jobs:
 
       - name: Release
         uses: softprops/action-gh-release@v2
-        if: github.event_name == 'release'
         # TODO: also include the manifest.json
         with:
+          tag_name: ${{ github.event.release.tag_name }}
           files: |
             files/**/*.bin
         env:
