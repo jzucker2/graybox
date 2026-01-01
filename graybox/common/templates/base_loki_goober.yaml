@@ -1,0 +1,5 @@
+# This is shared common goober code for any deployed or dev esp32 at Albion
+packages:
+  base_goober: !include ../templates/base_goober.yaml
+  # Newest feature is custom hacky prototype loki logger
+  loki: !include ../templates/loki_mvp.yaml
