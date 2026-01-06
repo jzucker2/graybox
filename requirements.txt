@@ -1,7 +1,7 @@
 aioesphomeapi==43.2.1
 aiohappyeyeballs==2.6.1
 ajsonrpc==1.2.0
-anyio==4.12.0
+anyio==4.12.1
 argcomplete==3.6.3
 async_interrupt==1.2.2
 bitarray==3.8.0
@@ -10,7 +10,7 @@ bleak==2.0.0
 bottle==0.13.4
 cairocffi==1.7.1
 CairoSVG==2.8.2
-certifi==2025.11.12
+certifi==2026.1.4
 cffi==2.0.0
 chacha20poly1305-reuseable==0.13.2
 chardet==5.2.0
@@ -20,7 +20,7 @@ colorama==0.4.6
 cryptography==45.0.1
 cssselect2==0.8.0
 defusedxml==0.7.1
-esphome==2025.12.4
+esphome==2025.12.5
 esphome-dashboard==20251013.0
 esphome-glyphsets==0.2.0
 esptool==5.1.0
