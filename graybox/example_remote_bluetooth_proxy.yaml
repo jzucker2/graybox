@@ -14,5 +14,5 @@ packages:
       graybox/common/bluetooth/white_idf_bluetooth_proxy_template.yaml,
       graybox/common/templates/graybox_project_details.yaml,
     ]
-    ref: maybe-major
+    ref: master
     refresh: 0d

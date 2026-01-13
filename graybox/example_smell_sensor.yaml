@@ -15,7 +15,7 @@ packages:
       - path: graybox/common/atom_idf_button.yaml
         vars:
           button_pin: 39
-    ref: maybe-major
+    ref: master
     refresh: 0d
   graybox:
     url: https://github.com/jzucker2/graybox
@@ -29,5 +29,5 @@ packages:
       graybox/common/default_i2c.yaml,
       graybox/common/smell_sensor.yaml,
     ]
-    ref: maybe-major
+    ref: master
     refresh: 0d
