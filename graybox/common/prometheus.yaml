@@ -1,7 +1,7 @@
-# https://github.com/esphome/esphome/pull/9941
-# Issue with prometheus changes too
+# Real prometheus datetime pr: https://github.com/esphome/esphome/pull/9941
+# Temp hotfix for dev and prod divergence: https://github.com/esphome/esphome/pull/13193
 external_components:
-  - source: github://pr#9941
+  - source: github://pr#13193
     components: [prometheus]
     refresh: 0s
 
