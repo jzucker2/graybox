@@ -20,7 +20,7 @@ colorama==0.4.6
 cryptography==45.0.1
 cssselect2==0.8.0
 defusedxml==0.7.1
-esphome==2025.12.5
+esphome==2025.12.6
 esphome-dashboard==20251013.0
 esphome-glyphsets==0.2.0
 esptool==5.1.0
@@ -40,7 +40,7 @@ packaging==25.0
 paho-mqtt==1.6.1
 pillow==11.3.0
 platformio==6.1.18
-protobuf==6.33.2
+protobuf==6.33.4
 puremagic==1.30
 pycparser==2.23
 pyelftools==0.32
@@ -65,7 +65,7 @@ tinycss2==1.5.1
 tornado==6.5.2
 tzdata==2025.3
 tzlocal==5.3.1
-urllib3==2.6.2
+urllib3==2.6.3
 uvicorn==0.34.3
 voluptuous==0.15.2
 webencodings==0.5.1
