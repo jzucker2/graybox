@@ -44,7 +44,7 @@ packages:
         vars:
           env_iv_i2c_id: "multiplex0channel2"
           env_iv_sensor_name: "${second_sensor_name}"
-    ref: master
+    ref: maybe-major
     refresh: 0d
 
   graybox:
@@ -58,7 +58,7 @@ packages:
       graybox/common/templates/graybox_project_details.yaml,
       graybox/common/default_i2c.yaml,
     ]
-    ref: master
+    ref: maybe-major
     refresh: 0d
 
 # temp sensors
