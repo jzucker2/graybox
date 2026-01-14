@@ -15,8 +15,9 @@ text_sensor:
     icon: "mdi:information-box"
     entity_category: "diagnostic"
     update_interval: 600s
+    # TODO: this is deprecated and should be replaced with `get_build_time_string`
     lambda: |-
-      return { ESPHOME_PROJECT_VERSION " " + App.get_build_time_string() };
+      return { ESPHOME_PROJECT_VERSION " " + App.get_compilation_time() };
 
   - platform: template
     name: "ESPHome Project Name"
