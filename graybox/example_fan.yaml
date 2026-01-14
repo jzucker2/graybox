@@ -18,7 +18,7 @@ packages:
       - path: graybox/common/atom_idf_button.yaml
         vars:
           button_pin: 39
-    ref: master
+    ref: maybe-fixing-major-upgradez
     refresh: 0d
   graybox:
     url: https://github.com/jzucker2/graybox
@@ -32,5 +32,5 @@ packages:
       graybox/common/fans/base_fan_template.yaml,
       graybox/common/fans/fan_rpm_sensor.yaml,
     ]
-    ref: master
+    ref: maybe-fixing-major-upgradez
     refresh: 0d
