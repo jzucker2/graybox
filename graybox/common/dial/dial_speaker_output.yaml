@@ -1,3 +1,0 @@
-- platform: ledc
-  pin: GPIO3
-  id: my_speaker_output
