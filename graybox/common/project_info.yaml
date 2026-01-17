@@ -16,7 +16,9 @@ text_sensor:
     entity_category: "diagnostic"
     update_interval: 600s
     lambda: |-
-      return { ESPHOME_PROJECT_VERSION " " + App.get_compilation_time() };
+      char buf[Application::BUILD_TIME_STR_SIZE];
+      App.get_build_time_string(buf);
+      return { ESPHOME_PROJECT_VERSION " " + std::string(buf) };
 
   - platform: template
     name: "ESPHome Project Name"
