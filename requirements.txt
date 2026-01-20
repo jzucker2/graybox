@@ -16,7 +16,7 @@ charset-normalizer==3.4.4
 click==8.1.7
 colorama==0.4.6
 cryptography==45.0.1
-esphome==2026.1.0b3
+esphome==2026.1.0b4
 esphome-dashboard==20260110.0
 esphome-glyphsets==0.2.0
 esptool==5.1.0
