@@ -85,7 +85,7 @@ jobs:
       files: |
         ${{ needs.choose-files.outputs.build_files }}
       # esphome-version: ${{ env.ESPHOME_VERSION }}
-      esphome-version: 2026.1.0b4
+      esphome-version: 2026.1.0
       release-summary: ${{ github.event_name == 'release' && github.event.action == 'published' && github.event.release.body || '' }}
       release-url: ${{ github.event_name == 'release' && github.event.action == 'published' && github.event.release.html_url || '' }}
       release-version: ${{ github.event_name == 'release' && github.event.action == 'published' && github.event.release.tag_name || '' }}
