@@ -1,5 +1,0 @@
-# toto (really a dev branch, with no pr)
-external_components:
-  - source: github://jzucker2/esphome@toto-timer
-    components: [toto_ir]
-    refresh: 0s
