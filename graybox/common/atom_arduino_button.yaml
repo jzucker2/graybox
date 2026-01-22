@@ -6,7 +6,3 @@ binary_sensor:
       inverted: true
     name: "${friendly_name} Button"
     id: atom_main_button
-    on_release:
-      then:
-        - logger.log: "${friendly_name} Button tapped"
-        - logger.log: "Done with ${friendly_name} button tapped!"
