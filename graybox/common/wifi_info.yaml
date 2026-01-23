@@ -11,3 +11,5 @@ text_sensor:
       name: ESP Mac Wifi Address
     dns_address:
       name: ESP DNS Address
+    power_save_mode:
+      name: WiFi Power Save Mode
