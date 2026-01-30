@@ -1,6 +1,7 @@
 # Real prometheus datetime pr: https://github.com/esphome/esphome/pull/9941
+# Hotfix: https://github.com/esphome/esphome/pull/13651
 external_components:
-  - source: github://pr#9941
+  - source: github://pr#13651
     components: [prometheus]
     refresh: 0s
 
