@@ -1,3 +1,4 @@
+# TODO: sync this with the `graybox/common/templates/graybox_project_details.yaml` file
 # https://esphome.io/components/text_sensor/template.html
 text_sensor:
   - platform: template
@@ -7,4 +8,4 @@ text_sensor:
     entity_category: "diagnostic"
     update_interval: 600s
     lambda: |-
-      return { "1.3.2" };
+      return { "1.3.3" };
