@@ -25,3 +25,8 @@ To base64 encode:
 ```
 pbpaste | base64
 ```
+
+## Notes
+
+* https://github.com/esphome/esphome/issues/13645#issuecomment-3824808131
+  * `Set CONFIG_LWIP_MAX_SOCKETS to 20`
