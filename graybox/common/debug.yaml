@@ -20,6 +20,12 @@ sensor:
     block:
       name: "Heap Max Block"
       id: heap_max_block
+    min_free:
+      name: "Heap Min Free"
+      id: heap_min_free
+    fragmentation:
+      name: "Heap Fragmentation"
+      id: heap_fragmenation
     loop_time:
       name: "Loop Time"
       id: loop_time
