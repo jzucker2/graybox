@@ -25,7 +25,7 @@ sensor:
       id: heap_min_free
     fragmentation:
       name: "Heap Fragmentation"
-      id: heap_fragmenation
+      id: heap_fragmentation
     loop_time:
       name: "Loop Time"
       id: loop_time
