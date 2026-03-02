@@ -16,7 +16,7 @@ charset-normalizer==3.4.4
 click==8.1.7
 colorama==0.4.6
 cryptography==45.0.1
-esphome==2026.2.2
+esphome==2026.2.3
 esphome-dashboard==20260210.0
 esphome-glyphsets==0.2.0
 esptool==5.1.0
@@ -36,7 +36,7 @@ packaging==26.0
 paho-mqtt==1.6.1
 pillow==11.3.0
 platformio==6.1.19
-protobuf==6.33.5
+protobuf==7.34.0
 puremagic==1.30
 pycparser==3.0
 pyelftools==0.32
