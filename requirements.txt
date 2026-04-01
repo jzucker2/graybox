@@ -2,7 +2,7 @@ aioesphomeapi==44.6.2
 aiohappyeyeballs==2.6.1
 ajsonrpc==1.2.0
 annotated-types==0.7.0
-anyio==4.12.1
+anyio==4.13.0
 argcomplete==3.6.3
 async_interrupt==1.2.2
 bitarray==3.8.0
@@ -19,7 +19,7 @@ click==8.3.1
 colorama==0.4.6
 crcmod==1.7
 cryptography==46.0.5
-esphome==2026.3.1
+esphome==2026.3.2
 esphome-dashboard==20260210.0
 esphome-glyphsets==0.2.0
 esptool==5.2.0
@@ -45,7 +45,7 @@ pycparser==3.0
 pydantic==2.12.5
 pydantic_core==2.41.5
 pyelftools==0.32
-Pygments==2.19.2
+Pygments==2.20.0
 pyobjc-core==12.1
 pyobjc-framework-Cocoa==12.1
 pyobjc-framework-CoreBluetooth==12.1
