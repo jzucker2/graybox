@@ -10,7 +10,7 @@ bitstring==4.4.0
 bleak==2.1.1
 bottle==0.13.4
 cbor2==5.9.0
-certifi==2026.2.25
+certifi==2026.4.22
 cffi==2.0.0
 chacha20poly1305-reuseable==0.13.2
 chardet==5.2.0
@@ -19,14 +19,14 @@ click==8.3.2
 colorama==0.4.6
 crcmod==1.7
 cryptography==46.0.7
-esphome==2026.4.1
+esphome==2026.4.2
 esphome-dashboard==20260408.1
 esphome-glyphsets==0.2.0
 esptool==5.2.0
 freetype-py==2.5.1
 h11==0.16.0
 icmplib==3.0.4
-idna==3.11
+idna==3.13
 ifaddr==0.2.0
 intelhex==2.3.0
 Jinja2==3.1.6
