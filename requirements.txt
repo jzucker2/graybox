@@ -19,7 +19,7 @@ click==8.3.2
 colorama==0.4.6
 crcmod==1.7
 cryptography==46.0.7
-esphome==2026.4.2
+esphome==2026.4.3
 esphome-dashboard==20260408.1
 esphome-glyphsets==0.2.0
 esptool==5.2.0
@@ -35,7 +35,7 @@ MarkupSafe==3.0.3
 marshmallow==3.26.2
 mdurl==0.1.2
 noiseprotocol==0.3.1
-packaging==26.1
+packaging==26.2
 paho-mqtt==1.6.1
 pillow==12.2.0
 platformio==6.1.19
@@ -69,7 +69,7 @@ tibs==0.5.7
 tornado==6.5.5
 typing-inspection==0.4.2
 typing_extensions==4.15.0
-tzdata==2026.1
+tzdata==2026.2
 tzlocal==5.3.1
 urllib3==2.6.3
 uvicorn==0.40.0
