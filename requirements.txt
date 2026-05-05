@@ -19,7 +19,7 @@ click==8.3.2
 colorama==0.4.6
 crcmod==1.7
 cryptography==46.0.7
-esphome==2026.4.3
+esphome==2026.4.4
 esphome-dashboard==20260408.1
 esphome-glyphsets==0.2.0
 esptool==5.2.0
