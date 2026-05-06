@@ -1,6 +1,6 @@
 # TODO: sync this with the `graybox/common/graybox_version_info.yaml` file
 substitutions:
-  box_version: "1.4.7"
+  box_version: "1.4.8"
 
 esphome:
   project: !include {file: ../default_project.yaml, vars: {box_version: "${box_version}"}}
