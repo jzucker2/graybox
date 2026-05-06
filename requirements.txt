@@ -19,7 +19,7 @@ click==8.3.2
 colorama==0.4.6
 crcmod==1.7
 cryptography==46.0.7
-esphome==2026.4.4
+esphome==2026.4.5
 esphome-dashboard==20260408.1
 esphome-glyphsets==0.2.0
 esptool==5.2.0
@@ -30,7 +30,7 @@ idna==3.13
 ifaddr==0.2.0
 intelhex==2.3.0
 Jinja2==3.1.6
-markdown-it-py==4.0.0
+markdown-it-py==4.1.0
 MarkupSafe==3.0.3
 marshmallow==3.26.2
 mdurl==0.1.2
@@ -42,8 +42,8 @@ platformio==6.1.19
 protobuf==7.34.1
 puremagic==1.30
 pycparser==3.0
-pydantic==2.13.3
-pydantic_core==2.46.3
+pydantic==2.13.4
+pydantic_core==2.46.4
 pyelftools==0.32
 Pygments==2.20.0
 pyobjc-core==12.1
