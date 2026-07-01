@@ -3,7 +3,7 @@ aiohappyeyeballs==2.6.2
 ajsonrpc==1.2.0
 annotated-types==0.7.0
 anyio==4.14.1
-argcomplete==3.6.3
+argcomplete==3.7.0
 async_interrupt==1.2.2
 backports.zstd==1.6.0
 bitarray==3.8.2
@@ -21,7 +21,7 @@ click==8.3.3
 colorama==0.4.6
 crcmod==1.7
 cryptography==48.0.1
-esphome==2026.6.3
+esphome==2026.6.4
 esphome-dashboard==20260425.0
 esphome-glyphsets==0.2.0
 esptool==5.3.0
