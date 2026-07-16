@@ -51,15 +51,6 @@ text_sensor:
       #endif
 
   - platform: template
-    name: "ESPHome PlatformIO Version"
-    id: esphome_platformio_version
-    icon: "mdi:information-box"
-    entity_category: "diagnostic"
-    update_interval: 600s
-    lambda: |-
-      return { to_string(PLATFORMIO) };
-
-  - platform: template
     name: "ESPHome IDF Version"
     id: esphome_idf_version
     icon: "mdi:information-box"
