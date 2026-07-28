@@ -6,7 +6,7 @@ anyio==4.14.2
 argcomplete==3.7.0
 async_interrupt==1.2.2
 backports.zstd==1.6.0
-bitarray==3.9.1
+bitarray==3.9.2
 bitstring==4.4.0
 bleak==2.1.1
 bottle==0.13.4
@@ -21,7 +21,7 @@ click==8.3.3
 colorama==0.4.6
 crcmod==1.7
 cryptography==49.0.0
-esphome==2026.7.2
+esphome==2026.7.3
 esphome-glyphsets==0.2.0
 esptool==5.3.1
 filelock==3.29.0
