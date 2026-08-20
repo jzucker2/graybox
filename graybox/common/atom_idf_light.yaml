@@ -2,7 +2,7 @@
 # https://esphome.io/components/light/esp32_rmt_led_strip
 light:
   - platform: esp32_rmt_led_strip
-    rgb_order: GRB
+    channel_colors: GRB
     chipset: SK6812
     pin: ${light_pin}
     num_leds: 1

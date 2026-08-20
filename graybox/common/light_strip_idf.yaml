@@ -2,7 +2,7 @@
 # https://esphome.io/components/light/
 # intended for https://www.amazon.com/gp/product/B079ZW1265
 - platform: esp32_rmt_led_strip
-  rgb_order: GRB
+  channel_colors: GRB
   pin: "${light_data_pin}"
   num_leds: "${num_leds}"
   is_rgbw: true
