@@ -4,7 +4,7 @@
 light:
   - platform: esp32_rmt_led_strip
     # platform: neopixelbus
-    rgb_order: GRB
+    channel_colors: GRB
     # type: GRB
     chipset: SK6812
     # variant: SK6812

@@ -21,7 +21,7 @@ click==8.3.3
 colorama==0.4.6
 crcmod==1.7
 cryptography==50.0.0
-esphome==2026.8.0
+esphome==2026.8.1
 esphome-glyphsets==0.2.0
 esptool==5.3.1
 filelock==3.32.2
@@ -43,7 +43,7 @@ paho-mqtt==1.6.1
 pillow==12.3.0
 platformdirs==4.11.1
 platformio==6.1.19
-protobuf==7.35.1
+protobuf==7.36.0
 psutil==7.2.2
 puremagic==2.2.0
 py7zr==1.1.3
