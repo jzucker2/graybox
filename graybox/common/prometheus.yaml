@@ -2,6 +2,7 @@
 # Hotfix: https://github.com/esphome/esphome/pull/13651
 # Caused by: https://github.com/esphome/esphome/pull/13407
 # Another hotfix: https://github.com/esphome/esphome/pull/19950
+# Due to https://github.com/esphome/esphome/pull/11968
 external_components:
   - source: github://pr#19950
     components: [prometheus]
