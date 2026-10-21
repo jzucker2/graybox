@@ -4,7 +4,7 @@
 # Another hotfix: https://github.com/esphome/esphome/pull/19950
 # Due to https://github.com/esphome/esphome/pull/11968
 external_components:
-  - source: github://pr#19950
+  - source: github://pr#9941
     components: [prometheus]
     refresh: 0s
 
