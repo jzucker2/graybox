@@ -3,8 +3,9 @@
 # Caused by: https://github.com/esphome/esphome/pull/13407
 # Another hotfix: https://github.com/esphome/esphome/pull/19950
 # Due to https://github.com/esphome/esphome/pull/11968
+# Got merged
 external_components:
-  - source: github://pr#9941
+  - source: github://esphome/esphome@dev
     components: [prometheus]
     refresh: 0s
 
